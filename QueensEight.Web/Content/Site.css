@@ -5286,7 +5286,7 @@ body {
 .board-small {
   height: 104px;
   width: 104px;
-  margin: 0 auto;
+  margin: 0 auto 25px auto;
 }
 .board-small .cell {
   height: 13px;
