@@ -1,0 +1,17 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+    <link href="~/Content/site.less" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+    @RenderBody()
+
+    @Scripts.Render("~/bundles/vendor")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

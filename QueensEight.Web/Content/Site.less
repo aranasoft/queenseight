@@ -1,0 +1,58 @@
+﻿@import "less/bootstrap.less"; 
+
+@cellCount: 8;
+
+@boardSizeLarge: 600px;
+@cellSizeLarge: @boardSizeLarge/@cellCount;
+
+@boardSizeSmall: 104px;
+@cellSizeSmall: @boardSizeSmall/@cellCount;
+
+body {
+    background: url(images/leather.gif) repeat top right;
+}
+
+.header {
+    background: url(images/banner.png);
+    height: 200px;
+    width: 1024px;
+    margin: 20px auto;
+}
+.board {
+    background: url(images/wood.png);
+}
+
+.board-large {
+    height: @boardSizeLarge;
+    width: @boardSizeLarge;
+    margin-top: 30px;
+    margin: 0 auto;
+    .cell {
+      height: @cellSizeLarge;
+      width: @cellSizeLarge;
+    }
+}
+
+.board-small {
+    height: @boardSizeSmall;
+    width: @boardSizeSmall;
+    margin: 0 auto;
+    .cell {
+      height: @cellSizeSmall;
+      width: @cellSizeSmall;
+      i {
+          margin-top: -2px;
+          margin-left: -1px;
+          color: #4d2616;
+        }
+    }
+}
+
+.cell {
+    float: left;
+}
+
+.cell-alt {
+    opacity: .6;
+    background-color: #4d2616
+}
