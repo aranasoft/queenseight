@@ -9,13 +9,14 @@
     var position = { row: row, column: column };
     if ($scope.hasQueen(row, column)) {
       $scope.$apply(function () {
-        $scope.positions.splice($scope.positions.indexOf(position), 1);
+        var existingPosition = _($scope.positions).find(function(p) {
+          return p.row === position.row && p.column === position.column;
+        });
+        $scope.positions.splice($scope.positions.indexOf(existingPosition), 1);
       });
     } else {
-      $scope.$apply(function() { $scope.positions.push(position); });
+      $scope.$apply(function () { $scope.positions.push(position); });
     }
-    console.log('handle click in controller with row: ' + row + ' column: ' + column);
-    console.log('hasQueen now: ' + $scope.hasQueen(row, column));
   };
 
   $scope.hasQueen = function (row, column) {
