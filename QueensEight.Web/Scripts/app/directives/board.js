@@ -2,10 +2,6 @@
   return {
     restrict: "C",
     template: queensEight.boardTemplate,
-    link: function (scope, element) {
-      //console.log('scope: ' + scope);
-      //console.log('element: ' + element);
-    }
   };
 });
 
@@ -13,12 +9,23 @@ queensEight.directive("cell", function() {
   return {
     restrict: "A",
     link: function (scope, element, attrs) {
-      element.addClass('cell');
+      var row = scope.$parent.$index;
+      var column = scope.$index;
 
-      element.bind("click", function (e) {
-        scope.onClick(attrs.row, attrs.column);
+      element.addClass('cell');
+      if (queensEight.isDark(row, column)) element.addClass('dark');
+
+      element.bind("click", function () {
+        scope.toggleQueen(row, column);
       });
     }
   };
 });
+
+queensEight.isDark = function (row, column){
+    var rowOffset = row % 2;
+    var cellIndex = (row * 8 + column + rowOffset) % 2;
+    var isDark = cellIndex == 1;
+    return isDark;
+};
 
