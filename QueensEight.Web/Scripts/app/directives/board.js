@@ -14,8 +14,7 @@ queensEight.directive("cell", function() {
     restrict: "A",
     link: function (scope, element, attrs) {
       element.addClass('cell');
-      element.addClass('cell-' + attrs.cell);
-      
+
       element.bind("click", function (e) {
         scope.onClick(attrs.row, attrs.column);
       });

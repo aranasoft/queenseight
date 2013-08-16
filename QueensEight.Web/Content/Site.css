@@ -5300,7 +5300,7 @@ body {
 .cell {
   float: left;
 }
-.cell-dark {
+.dark {
   opacity: .6;
   background-color: #4d2616;
 }
