@@ -30,6 +30,10 @@ body {
     .cell {
       height: @cellSizeLarge;
       width: @cellSizeLarge;
+      img {
+        height: 65px; width: 65px;
+        margin: 5px;
+      }
     }
 }
 
@@ -45,7 +49,10 @@ body {
           margin-left: -1px;
           color: #4d2616;
         }
-    }
+      img {
+        display: none;
+      }
+   }
 }
 
 .cell {
@@ -53,6 +60,5 @@ body {
 }
 
 .dark {
-    opacity: .6;
-    background-color: #4d2616
+    background-color: rgba(77,38,22,.6);
 }

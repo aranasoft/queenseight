@@ -14,6 +14,7 @@ namespace QueensEight.Web
                 new ScriptBundle("~/bundles/vendor")
                     .Include("~/Scripts/jquery-{version}.js")
                     .Include("~/Scripts/bootstrap.js")
+                    .Include("~/Scripts/underscore.js")
                     .Include("~/Scripts/angular.js")
                 );
 

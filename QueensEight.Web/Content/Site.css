@@ -5283,6 +5283,11 @@ body {
   height: 75px;
   width: 75px;
 }
+.board-large .cell img {
+  height: 65px;
+  width: 65px;
+  margin: 5px;
+}
 .board-small {
   height: 104px;
   width: 104px;
@@ -5297,10 +5302,12 @@ body {
   margin-left: -1px;
   color: #4d2616;
 }
+.board-small .cell img {
+  display: none;
+}
 .cell {
   float: left;
 }
 .dark {
-  opacity: .6;
-  background-color: #4d2616;
+  background-color: rgba(77, 38, 22, 0.6);
 }
