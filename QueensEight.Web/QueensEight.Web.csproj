@@ -175,6 +175,7 @@
     <Compile Include="WebRole.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\images\Arana.png" />
     <Content Include="Content\images\banner.png" />
     <Content Include="Content\images\crown.png" />
     <Content Include="Content\images\glyphicons-halflings-white.png" />
