@@ -1,13 +1,22 @@
 ﻿queensEight.directive("board", function () {
   return {
     restrict: "C",
-    template: queensEight.boardTemplate,
+    template: queensEight.boardTemplate
   };
 });
 
-queensEight.directive("cell", function() {
+queensEight.directive("interactive", function() {
   return {
     restrict: "A",
+    link: function(scope, element, attrs) {
+      scope.isInteractive = true;
+    }
+  };
+});
+
+queensEight.directive("cell", function () {
+  return {
+    restrict: "C",
     link: function (scope, element, attrs) {
       var row = scope.$parent.$index;
       var column = scope.$index;
