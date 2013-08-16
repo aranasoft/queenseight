@@ -352,6 +352,7 @@
       <Compile>False</Compile>
       <Minify>False</Minify>
     </Content>
+    <Content Include="Scripts\app\templates\board.coffee" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
     <Content Include="Scripts\angular-bootstrap-prettify.js" />
     <Content Include="Scripts\angular-bootstrap-prettify.min.js" />
@@ -372,7 +373,9 @@
     <Content Include="Scripts\app\app.js" />
     <Content Include="Scripts\app\controllers\board.js" />
     <Content Include="Scripts\app\directives\board.js" />
-    <Content Include="Scripts\app\templates\board.js" />
+    <Content Include="Scripts\app\templates\board.js">
+      <DependentUpon>board.coffee</DependentUpon>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\i18n\angular-locale_af-na.js" />

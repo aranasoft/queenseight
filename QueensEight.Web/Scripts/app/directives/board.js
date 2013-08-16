@@ -2,10 +2,23 @@
   return {
     restrict: "C",
     template: queensEight.boardTemplate,
-    link: function(scope, element) {
-      //element.addClass('board-large');
-      console.log('scope: ' + scope);
-      console.log('element: ' + element);
+    link: function (scope, element) {
+      //console.log('scope: ' + scope);
+      //console.log('element: ' + element);
+    }
+  };
+});
+
+queensEight.directive("cell", function() {
+  return {
+    restrict: "A",
+    link: function (scope, element, attrs) {
+      element.addClass('cell');
+      element.addClass('cell-' + attrs.cell);
+      
+      element.bind("click", function (e) {
+        scope.onClick(attrs.row, attrs.column);
+      });
     }
   };
 });

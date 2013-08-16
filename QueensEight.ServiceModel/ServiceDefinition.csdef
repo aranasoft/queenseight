@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ServiceDefinition name="QueensEight.ServiceModel" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition" schemaVersion="2013-03.2.0">
-  <WebRole name="QueensEight.Web" vmsize="Small">
+  <WebRole name="QueensEight.Web" vmsize="ExtraSmall">
     <Sites>
       <Site name="Web">
         <Bindings>
@@ -12,7 +12,6 @@
       <InputEndpoint name="Endpoint1" protocol="http" port="80" />
     </Endpoints>
     <Imports>
-      <Import moduleName="Diagnostics" />
     </Imports>
   </WebRole>
 </ServiceDefinition>
