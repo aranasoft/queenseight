@@ -17,6 +17,14 @@ namespace QueensEight.Web
                     .Include("~/Scripts/angular.js")
                 );
 
+            bundles.Add(
+                new ScriptBundle("~/bundles/queenseight")
+                .Include("~/Scripts/app/app.js")
+                .IncludeDirectory("~/Scripts/app/templates","*.js")
+                .IncludeDirectory("~/Scripts/app/directives","*.js")
+                .IncludeDirectory("~/Scripts/app/controllers","*.js")
+                );
+
         }
 
     }
