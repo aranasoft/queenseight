@@ -34,6 +34,14 @@ queensEight.controller "BoardController", ['$scope', ($scope) ->
   $scope.hasQueen = (row, column) ->
     return _($scope.solution.positions).any (position) ->
       position.row == row and position.column == column;
+
+  $scope.requestSolution = ->
+    console.log 'request solution'
+    $.connection.solutionsHub.server.requestSolution($scope.solution).done (solutionJson) ->
+      console.log 'solution response: ', solutionJson
+      solution = JSON.parse solutionJson
+      $scope.solution = solution
+      $scope.$apply()
 ]
 
 

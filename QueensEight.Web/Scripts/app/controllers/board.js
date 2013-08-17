@@ -53,9 +53,20 @@
           });
         }
       };
-      return $scope.hasQueen = function(row, column) {
+      $scope.hasQueen = function(row, column) {
         return _($scope.solution.positions).any(function(position) {
           return position.row === row && position.column === column;
+        });
+      };
+      return $scope.requestSolution = function() {
+        console.log('request solution');
+        return $.connection.solutionsHub.server.requestSolution($scope.solution).done(function(solutionJson) {
+          var solution;
+
+          console.log('solution response: ', solutionJson);
+          solution = JSON.parse(solutionJson);
+          $scope.solution = solution;
+          return $scope.$apply();
         });
       };
     }
