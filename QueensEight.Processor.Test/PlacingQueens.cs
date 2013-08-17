@@ -22,10 +22,8 @@ namespace QueensEight.Processor.Test
         public void PlacedQueenIsOnBoard()
         {
             var position = new Position { Row = 3, Column = 2 };
-            var queen = new Queen { Position = position };
-            var queens = new[] { queen };
 
-            board.PlaceQueens(queens);
+            board.PlaceQueensAtPositions(new [] {position});
 
             Assert.AreEqual(board.Queens.Count(), 1);
         }
@@ -34,10 +32,8 @@ namespace QueensEight.Processor.Test
         public void PlacedQueenIsInCorrectPosition()
         {
             var position = new Position { Row = 3, Column = 2 };
-            var queen = new Queen { Position = position };
-            var queens = new[] { queen };
 
-            board.PlaceQueens(queens);
+            board.PlaceQueensAtPositions(new [] {position});
 
             Assert.AreEqual(board.Queens.First().Position, position);
         }
@@ -46,10 +42,8 @@ namespace QueensEight.Processor.Test
         public void InvalidPositionQueensAreNotAccepted()
         {
             var position = new Position { Row = 3, Column = 8 };
-            var queen = new Queen() { Position = position };
-            var queens = new[] { queen };
 
-            Assert.Throws<ArgumentException>(() => board.PlaceQueens(queens));
+            Assert.Throws<ArgumentException>(() => board.PlaceQueensAtPositions(new [] {position}));
         }
     }
 }

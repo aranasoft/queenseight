@@ -15,11 +15,12 @@ namespace QueensEight.Processor.Test
         public void SetupBoard()
         {
             board = new Board();
-            var queen1 = new Queen { Position = new Position { Row = 2, Column = 3 } };
-            var queen2 = new Queen { Position = new Position { Row = 5, Column = 3 } };
-            var queens = new[] { queen1, queen2 };
-
-            board.PlaceQueens(queens);
+            var positions = new[]
+                {
+                    new Position {Row = 2, Column = 3},
+                    new Position {Row = 5, Column = 3}
+                };
+            board.PlaceQueensAtPositions(positions);
         }
 
         [Test]

@@ -31,8 +31,9 @@ namespace QueensEight.Processor
             }
         }
 
-        public void PlaceQueens(IEnumerable<Queen> queens)
+        public void PlaceQueensAtPositions(IEnumerable<Position> positions)
         {
+            var queens = positions.Select(position => new Queen() {Position = position});
             if (!AreValidPositions(queens)) throw new ArgumentException();
 
             Queens.AddRange(queens);

@@ -15,9 +15,10 @@ namespace QueensEight.Processor.Test
     [SetUp]
     public void SetupQueen()
     {
-      _queen = new Queen {Position = new Position {Row = 0, Column = 0}};
+        var position = new Position {Row = 0, Column = 0};
+        _queen = new Queen {Position = position};
         _board = new Board();
-        _board.PlaceQueens(new []{_queen});
+        _board.PlaceQueensAtPositions(new []{position});
     }
 
     [TestCase(0,1,Result=true)]

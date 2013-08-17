@@ -15,7 +15,7 @@ namespace QueensEight.Processor.Test
         public void Run()
         {
             var board = new Board();
-            board.PlaceQueens(new List<Queen>());
+            board.PlaceQueensAtPositions(new List<Position>());
             var result = board.Solve().ToList();
             Assert.AreEqual(result.Count(), 8);
         }
@@ -24,8 +24,8 @@ namespace QueensEight.Processor.Test
         public void SolvableWith1Placed()
         {
             var board = new Board();
-            var initialQueens = new[] { new Queen { Position = new Position { Row = 0, Column = 0 } } };
-            board.PlaceQueens(initialQueens);
+            var initialPositions = new[] {new Position { Row = 0, Column = 0 } };
+            board.PlaceQueensAtPositions(initialPositions);
             var result = board.Solve().ToList();
             Assert.AreEqual(result.Count(), 8);
         }
@@ -34,12 +34,12 @@ namespace QueensEight.Processor.Test
         public void SolvableWith2Placed()
         {
             var board = new Board();
-            var initialQueens = new[]
+            var initialPositions = new[]
                 { 
-                    new Queen {Position = new Position {Row = 2, Column = 2}},
-                    new Queen {Position = new Position {Row = 0, Column = 3}},
+                    new Position {Row = 2, Column = 2},
+                    new Position {Row = 0, Column = 3},
                 };
-            board.PlaceQueens(initialQueens);
+            board.PlaceQueensAtPositions(initialPositions);
             var result = board.Solve().ToList();
             Assert.AreNotEqual(result.Count(), 0);
         }
@@ -47,12 +47,12 @@ namespace QueensEight.Processor.Test
         public void UnsolvableWith2Placed()
         {
             var board = new Board();
-            var initialQueens = new[]
+            var initialPositions = new[]
                 { 
-                    new Queen {Position = new Position {Row = 0, Column = 0}},
-                    new Queen {Position = new Position {Row = 1, Column = 7}},
+                    new Position {Row = 0, Column = 0},
+                    new Position {Row = 1, Column = 7},
                 };
-            board.PlaceQueens(initialQueens);
+            board.PlaceQueensAtPositions(initialPositions);
             var result = board.Solve().ToList();
             Assert.AreEqual(result.Count(), 0);
         }
