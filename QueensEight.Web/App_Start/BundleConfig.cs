@@ -16,6 +16,7 @@ namespace QueensEight.Web
                     .Include("~/Scripts/bootstrap.js")
                     .Include("~/Scripts/underscore.js")
                     .Include("~/Scripts/angular.js")
+                    .Include("~/Scripts/jquery.signalR-{version}.js")
                 );
 
             bundles.Add(

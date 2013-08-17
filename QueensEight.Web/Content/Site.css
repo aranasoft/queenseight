@@ -5288,6 +5288,9 @@ body {
   width: 65px;
   margin: 5px;
 }
+.board-large .cell i {
+  display: none;
+}
 .board-small {
   height: 104px;
   width: 104px;
@@ -5301,6 +5304,7 @@ body {
   margin-top: -2px;
   margin-left: -1px;
   color: #4d2616;
+  background-image: url(images/glyphicons-halflings.png);
 }
 .board-small .cell img {
   display: none;
