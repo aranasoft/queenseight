@@ -8,21 +8,15 @@ using QueensEight.Processor;
 
 namespace QueensEight.Web.Hubs
 {
-    public class Solution
-    {
-        public List<Position> Positions { get; set; }
-        public string Hash { get; set; }
-    }
-
     public class SolutionsHub : Hub
     {
         public static JsonSerializerSettings serializerSettings =
             new JsonSerializerSettings { ContractResolver = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver() };
 
-        public string FetchSolutions()
-        {
-            var solutions = new List<Solution>();
+        private static List<Solution> solutions = new List<Solution>();
 
+        static SolutionsHub()
+        {
             var solution = new Solution {Hash = "12345"};
             var positions = new List<Position>
                 {
@@ -37,6 +31,10 @@ namespace QueensEight.Web.Hubs
                 };
             solution.Positions = positions;
             solutions.Add(solution);
+        }
+
+        public string FetchSolutions()
+        {
 
             return JsonConvert.SerializeObject(solutions, serializerSettings);
         }
@@ -48,9 +46,25 @@ namespace QueensEight.Web.Hubs
             var queens = board.Solve();
             var positions = queens.Select(queen => queen.Position).ToList();
 
-            var solution = new Solution {Hash = "12345"};
-            solution.Positions = positions;
-            return JsonConvert.SerializeObject(solution, serializerSettings);
+            var solution = new Solution
+                {
+                    Hash = Position.ListHash(positions),
+                    Positions = positions
+                };
+
+
+            string serializedSolution = JsonConvert.SerializeObject(solution, serializerSettings);
+
+            if (positions.Any())
+            {
+                if (solutions.All(s => s.Hash != solution.Hash))
+                {
+                    Clients.All.SolutionAvailable(serializedSolution);
+                    solutions.Add(solution);
+                }
+            }
+
+            return serializedSolution;
         }
     }
 }

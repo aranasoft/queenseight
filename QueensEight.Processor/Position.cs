@@ -35,9 +35,22 @@ namespace QueensEight.Processor
 
             return (position.Row == Row) && (position.Column == Column);
         }
+
         public override int GetHashCode()
         {
             return (Row * 10) + Column;
+        }
+
+        public static string ListHash(IEnumerable<Position> positions)
+        {
+            var hashBuilder = new StringBuilder();
+
+            var hashes = positions.OrderBy(position => position.Row)
+                                  .Select(position => position.GetHashCode().ToString());
+
+            foreach (var hash in hashes) { hashBuilder.Append(hash); }
+
+            return hashBuilder.ToString();
         }
     }
 }
