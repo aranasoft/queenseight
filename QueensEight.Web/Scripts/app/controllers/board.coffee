@@ -49,5 +49,9 @@ queensEight.controller "BoardController", ['$scope', ($scope) ->
       solution = JSON.parse solutionJson
       $scope.solution = solution
       $scope.$apply()
+
+  $scope.clearBoard = ->
+    $scope.solution.hash = ''
+    $scope.solution.positions = []
 ]
 

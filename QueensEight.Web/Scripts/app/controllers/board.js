@@ -69,7 +69,7 @@
           return position.row === row && position.column === column;
         });
       };
-      return $scope.requestSolution = function() {
+      $scope.requestSolution = function() {
         console.log('request solution');
         return $.connection.solutionsHub.server.requestSolution($scope.solution).done(function(solutionJson) {
           var solution;
@@ -79,6 +79,10 @@
           $scope.solution = solution;
           return $scope.$apply();
         });
+      };
+      return $scope.clearBoard = function() {
+        $scope.solution.hash = '';
+        return $scope.solution.positions = [];
       };
     }
   ]);
