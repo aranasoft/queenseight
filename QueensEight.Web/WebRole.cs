@@ -32,6 +32,7 @@ namespace QueensEight.Web
                     _hasRunCompleted = true;
                     return;
                 }
+                Thread.Sleep(10000);
             }
         }
 

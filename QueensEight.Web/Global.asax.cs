@@ -55,14 +55,9 @@ namespace QueensEight.Web
                         {
                             SolutionsHub.BroadcastSolution(solution);
                         }
-                        else
-                        {
-                            Thread.Sleep(100);
-                        }
+                        Thread.Sleep(100);
                     }
                 });
-
-
         }
     }
 }

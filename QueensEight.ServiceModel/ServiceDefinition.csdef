@@ -14,7 +14,7 @@
     <Imports>
     </Imports>
   </WebRole>
-  <WorkerRole name="QueensEight.Worker" vmsize="Small">
+  <WorkerRole name="QueensEight.Worker" vmsize="ExtraSmall">
     <Imports>
       <Import moduleName="Diagnostics" />
     </Imports>
