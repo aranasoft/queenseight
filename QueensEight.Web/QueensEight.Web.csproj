@@ -199,6 +199,8 @@
     <Compile Include="WebRole.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\font\fontawesome-webfont.svg" />
+    <Content Include="Content\font\libra_bt-webfont.svg" />
     <Content Include="Content\images\Arana.png" />
     <Content Include="Content\images\banner.png" />
     <Content Include="Content\images\crown.png" />
@@ -207,10 +209,27 @@
     <Content Include="Content\images\leather.gif" />
     <Content Include="Content\images\wood.png" />
     <Content Include="Content\Site.css">
-      <DependentUpon>Site.less</DependentUpon>
+      <DependentUpon>site.less</DependentUpon>
     </Content>
     <Content Include="Global.asax" />
-    <None Include="Content\Site.less">
+    <Content Include="Content\font-awesome\bootstrap.less" />
+    <Content Include="Content\font-awesome\core.less" />
+    <Content Include="Content\font-awesome\extras.less" />
+    <Content Include="Content\font-awesome\font-awesome-ie7.less" />
+    <Content Include="Content\font-awesome\font-awesome.less" />
+    <Content Include="Content\font-awesome\icons.less" />
+    <Content Include="Content\font-awesome\mixins.less" />
+    <Content Include="Content\font-awesome\path.less" />
+    <Content Include="Content\font-awesome\variables.less" />
+    <Content Include="Content\font\fontawesome-webfont.eot" />
+    <Content Include="Content\font\fontawesome-webfont.ttf" />
+    <Content Include="Content\font\fontawesome-webfont.woff" />
+    <Content Include="Content\font\FontAwesome.otf" />
+    <Content Include="Content\font\libra_bt-webfont.eot" />
+    <Content Include="Content\font\libra_bt-webfont.ttf" />
+    <Content Include="Content\font\libra_bt-webfont.woff" />
+    <Content Include="Content\mixins.less" />
+    <None Include="Content\site.less">
       <Compile>False</Compile>
       <Minify>False</Minify>
     </None>
@@ -380,6 +399,7 @@
     </Content>
     <Content Include="Scripts\app\templates\board.coffee" />
     <Content Include="Scripts\app\controllers\board.coffee" />
+    <Content Include="Content\variables.less" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
     <Content Include="Scripts\angular-bootstrap-prettify.js" />
     <Content Include="Scripts\angular-bootstrap-prettify.min.js" />
@@ -761,7 +781,7 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
-  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.8\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.8\tools\Microsoft.Bcl.Build.targets')"/>
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.8\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.8\tools\Microsoft.Bcl.Build.targets')" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
