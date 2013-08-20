@@ -14,4 +14,9 @@
     <Imports>
     </Imports>
   </WebRole>
+  <WorkerRole name="QueensEight.Worker" vmsize="Small">
+    <Imports>
+      <Import moduleName="Diagnostics" />
+    </Imports>
+  </WorkerRole>
 </ServiceDefinition>

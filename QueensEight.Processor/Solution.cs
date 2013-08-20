@@ -10,5 +10,6 @@ namespace QueensEight.Processor
     {
         public List<Position> Positions { get; set; }
         public string Hash { get; set; }
+        public string RequestHash { get; set; }
     }
 }

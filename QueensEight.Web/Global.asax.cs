@@ -1,11 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Microsoft.WindowsAzure.ServiceRuntime;
+using QueensEight.Processor.ServiceBus;
+using QueensEight.Web.App_Start;
+using QueensEight.Web.Hubs;
 
 namespace QueensEight.Web
 {
@@ -24,6 +30,39 @@ namespace QueensEight.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            SetupSubscriptionListener();
+        }
+
+        public void SetupSubscriptionListener()
+        {
+            var instanceId = RoleEnvironment.CurrentRoleInstance.Id;
+            var instanceNumber = instanceId.Substring(instanceId.LastIndexOf("_"));
+            var environment = RoleEnvironment.IsEmulated  ? "dev" : "prod";
+
+            var subscriptionName = string.Format("solutionavailable_{0}_{1}",environment, instanceNumber);
+
+
+            ServiceBusConfig.Setup();
+            ServiceBusUtilities.SetupSubscription(subscriptionName);
+
+            Task.Factory.StartNew(() =>
+                {
+                    while (true)
+                    {
+                        var solution = ServiceBusUtilities.SolutionAvailableSubscription.Receive();
+                        if (solution != null)
+                        {
+                            SolutionsHub.BroadcastSolution(solution);
+                        }
+                        else
+                        {
+                            Thread.Sleep(100);
+                        }
+                    }
+                });
+
+
         }
     }
 }

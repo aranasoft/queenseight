@@ -16,11 +16,21 @@
         console.log('serialized solution: ', serializedSolution);
         solution = JSON.parse(serializedSolution);
         $scope.solutions.push(solution);
+        if ($scope.activeSolutions[0].requestHash === solution.requestHash) {
+          $scope.activeSolutions[0].positions = solution.positions;
+          $scope.activeSolutions[0].hash = solution.hash;
+        }
         return $scope.$apply();
       };
       return $.connection.hub.start().done(function() {
         return $.connection.solutionsHub.server.fetchSolutions().done(function(solutionsJson) {
+          var solution;
+
           $scope.solutions = JSON.parse(solutionsJson);
+          $scope.activeSolutions = [];
+          solution = {};
+          solution.positions = [];
+          $scope.activeSolutions.push(solution);
           return $scope.$apply();
         });
       });
@@ -33,7 +43,6 @@
     '$scope', function($scope) {
       var _base;
 
-      window.boardscope = $scope;
       $scope.solution || ($scope.solution = {});
       (_base = $scope.solution).positions || (_base.positions = []);
       $scope.rowIndicies = [0, 1, 2, 3, 4, 5, 6, 7];
@@ -70,15 +79,11 @@
         });
       };
       $scope.requestSolution = function() {
-        console.log('request solution');
-        return $.connection.solutionsHub.server.requestSolution($scope.solution).done(function(solutionJson) {
-          var solution;
+        var hash;
 
-          console.log('solution response: ', solutionJson);
-          solution = JSON.parse(solutionJson);
-          $scope.solution = solution;
-          return $scope.$apply();
-        });
+        hash = queensEight.hashFromPositions($scope.solution.positions);
+        $scope.solution.requestHash = hash;
+        return $.connection.solutionsHub.server.requestSolution($scope.solution);
       };
       return $scope.clearBoard = function() {
         $scope.solution.hash = '';

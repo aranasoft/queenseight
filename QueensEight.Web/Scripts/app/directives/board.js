@@ -38,3 +38,14 @@ queensEight.isDark = function (row, column){
     return isDark;
 };
 
+queensEight.hashFromPositions = function(positions) {
+  var hash = '';
+  var cellHashes = _(positions).sortBy(function(position) {
+    return position.row;
+  }).map(function(position) {
+    return "" + position.row + "" + position.column;
+  });
+
+  return cellHashes.join('');
+};
+

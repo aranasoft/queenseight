@@ -7,11 +7,19 @@ queensEight.controller "GameController", ['$scope', ($scope) ->
     console.log 'serialized solution: ',serializedSolution
     solution = JSON.parse(serializedSolution)
     $scope.solutions.push solution
+    if( $scope.activeSolutions[0].requestHash == solution.requestHash )
+      $scope.activeSolutions[0].positions = solution.positions
+      $scope.activeSolutions[0].hash = solution.hash
     $scope.$apply()
 
   $.connection.hub.start().done ->
     $.connection.solutionsHub.server.fetchSolutions().done (solutionsJson) ->
       $scope.solutions = JSON.parse solutionsJson
+      $scope.activeSolutions = [] 
+      solution = {}
+      solution.positions = []
+      $scope.activeSolutions.push solution
+
       $scope.$apply()
 ]
 
@@ -19,7 +27,6 @@ queensEight.controller "SolutionsController", ['$scope', ($scope) ->
 ]
 
 queensEight.controller "BoardController", ['$scope', ($scope) ->
-  window.boardscope = $scope
   $scope.solution ||= {}
   $scope.solution.positions ||= []
 
@@ -43,12 +50,9 @@ queensEight.controller "BoardController", ['$scope', ($scope) ->
       position.row == row and position.column == column;
 
   $scope.requestSolution = ->
-    console.log 'request solution'
-    $.connection.solutionsHub.server.requestSolution($scope.solution).done (solutionJson) ->
-      console.log 'solution response: ', solutionJson
-      solution = JSON.parse solutionJson
-      $scope.solution = solution
-      $scope.$apply()
+    hash = queensEight.hashFromPositions $scope.solution.positions
+    $scope.solution.requestHash = hash
+    $.connection.solutionsHub.server.requestSolution($scope.solution)
 
   $scope.clearBoard = ->
     $scope.solution.hash = ''

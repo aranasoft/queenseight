@@ -45,12 +45,24 @@
       <RoleName>QueensEight.Web</RoleName>
       <UpdateDiagnosticsConnectionStringOnPublish>True</UpdateDiagnosticsConnectionStringOnPublish>
     </ProjectReference>
+    <ProjectReference Include="..\QueensEight.Worker\QueensEight.Worker.csproj">
+      <Name>QueensEight.Worker</Name>
+      <Project>{b7db24a3-d442-4586-9455-b534c21e0d1a}</Project>
+      <Private>True</Private>
+      <RoleType>Worker</RoleType>
+      <RoleName>QueensEight.Worker</RoleName>
+      <UpdateDiagnosticsConnectionStringOnPublish>True</UpdateDiagnosticsConnectionStringOnPublish>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="QueensEight.WebContent\" />
+    <Folder Include="QueensEight.WorkerContent\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="QueensEight.WebContent\diagnostics.wadcfg">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="QueensEight.WorkerContent\diagnostics.wadcfg">
       <SubType>Content</SubType>
     </Content>
   </ItemGroup>

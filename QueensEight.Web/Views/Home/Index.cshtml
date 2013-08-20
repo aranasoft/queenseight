@@ -9,7 +9,7 @@
         <div class="span2" ng-controller="SolutionsController">
             <div class="board board-small" ng-repeat="solution in solutions" ng-controller="BoardController"> </div>
         </div>
-        <div class="span10" ng-controller="BoardController">
+        <div class="span10" ng-controller="BoardController" ng-repeat="solution in activeSolutions">
             <div class="board board-large" interactive></div>
             <div>
                 <button ng-click="requestSolution()">Request Solution</button>
