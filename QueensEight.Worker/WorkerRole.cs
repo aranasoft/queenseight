@@ -52,7 +52,7 @@ namespace QueensEight.Worker
                 }
                 else
                 {
-                    Thread.Sleep(500);
+                    Thread.Sleep(100);
                 }
             }
         }
@@ -71,7 +71,7 @@ namespace QueensEight.Worker
             _isStopping = true;
             while (!_hasRunCompleted)
             {
-                Thread.Sleep(10000);
+                Thread.Sleep(1000);
             }
 
             base.OnStop();

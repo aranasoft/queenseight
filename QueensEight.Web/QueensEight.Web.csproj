@@ -213,6 +213,7 @@
     <Content Include="Content\Site.css">
       <DependentUpon>site.less</DependentUpon>
     </Content>
+    <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\font-awesome\bootstrap.less" />
     <Content Include="Content\font-awesome\core.less" />
