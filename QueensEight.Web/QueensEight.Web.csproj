@@ -203,10 +203,12 @@
     <Content Include="Content\font\libra_bt-webfont.svg" />
     <Content Include="Content\images\Arana.png" />
     <Content Include="Content\images\banner.png" />
+    <Content Include="Content\images\crown-alt.png" />
     <Content Include="Content\images\crown.png" />
     <Content Include="Content\images\glyphicons-halflings-white.png" />
     <Content Include="Content\images\glyphicons-halflings.png" />
-    <Content Include="Content\images\leather.gif" />
+    <Content Include="Content\images\leather%401x.jpg" />
+    <Content Include="Content\images\leather%402x.jpg" />
     <Content Include="Content\images\wood.png" />
     <Content Include="Content\Site.css">
       <DependentUpon>site.less</DependentUpon>

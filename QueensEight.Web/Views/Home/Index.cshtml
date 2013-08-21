@@ -2,32 +2,21 @@
   ViewBag.Title = "Queens Eight";
 }
 
-<div class="main_content">
-  <div class="header"></div>
-  <div class="container" ng-controller="GameController">
-    <div class="row">
-      <div class="span2" ng-controller="SolutionsController">
-        <div class="chesstable">
-          <div class="board board-small" ng-repeat="solution in solutions" ng-controller="BoardController"> </div>
-        </div>
-      </div>
-      <div class="span10" ng-controller="BoardController" ng-repeat="solution in activeSolutions">
-        <div class="chesstable">
-          <div class="board board-large" interactive></div>
-          <div class="board-actions">
-            <button class="btn btn-primary btn-large" ng-click="requestSolution()">Request Solution</button>
-            <button class="btn btn-primary btn-large" ng-click="clearBoard()">Clear Board</button>
-          </div>
-        </div>
+<div class="container" ng-controller="GameController">
+  <div class="row">
+    <div class="span2" ng-controller="SolutionsController">
+      <div class="chesstable chesstable-small">
+        <div class="board" ng-repeat="solution in solutions" ng-controller="BoardController"> </div>
       </div>
     </div>
-  </div>
-  <div class="footer-push"></div>
-</div>
-<div class="footer" >
-  <div class="container">
-    <div class="logo">
-      <img src="~/Content/images/Arana.png"/>
-    </div> 
+    <div class="span10" ng-controller="BoardController" ng-repeat="solution in activeSolutions">
+      <div class="chesstable chesstable-large">
+        <div class="board" interactive></div>
+      </div>
+      <div class="board-actions">
+        <button class="btn btn-primary btn-large" ng-click="requestSolution()">Request Solution</button>
+        <button class="btn btn-primary btn-large" ng-click="clearBoard()">Clear Board</button>
+      </div>
+    </div>
   </div>
 </div>

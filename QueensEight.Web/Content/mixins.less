@@ -1,20 +1,25 @@
-.board(@cellSize: 75px) {
+.chess-table(@cellSize: 75px, @borderSize: 1px) {
   @boardSize: @cellSize * @cellCount;
-  .square(@boardSize);
-  margin: 30px auto 0;
+  .square(@boardSize + (@borderSize * 2));
 
-  .cell {
-    .square(@cellSize);
+  .board {
+    .square(@boardSize);
+    border: @borderSize solid @brownGray;
+    margin: auto;
+
+    .cell {
+      .square(@cellSize);
+    }
   }
 }
 
 .font-face(@family, @fileName) {
-    font-family: @family;
-    src: url('./font/@{fileName}-webfont.eot');
-    src: url('./font/@{fileName}-webfont.eot?#iefix') format('embedded-opentype'),
-         url('./font/@{fileName}-webfont.woff') format('woff'),
-         url('./font/@{fileName}-webfont.ttf') format('truetype'),
-         url('./font/@{fileName}-webfont.svg#libra_btregular') format('svg');
-    font-weight: normal;
-    font-style: normal;
+  font-family: @family;
+  src: url('./font/@{fileName}-webfont.eot');
+  src: url('./font/@{fileName}-webfont.eot?#iefix') format('embedded-opentype'),
+       url('./font/@{fileName}-webfont.woff') format('woff'),
+       url('./font/@{fileName}-webfont.ttf') format('truetype'),
+       url('./font/@{fileName}-webfont.svg#libra_btregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
 }
