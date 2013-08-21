@@ -6397,10 +6397,8 @@ body {
   height: 13px;
 }
 .chesstable-small .board .cell i {
-  margin-top: -2px;
-  margin-left: -1px;
-  color: #1e1e1e;
-  background-image: url(images/glyphicons-halflings.png);
+  display: block;
+  color: #330000;
 }
 .chesstable-small .board .cell img {
   display: none;
@@ -6425,7 +6423,7 @@ body {
 .cell {
   float: left;
 }
-.dark {
+.cell-dark {
   background-color: rgba(77, 38, 22, 0.6);
 }
 .footer-push {

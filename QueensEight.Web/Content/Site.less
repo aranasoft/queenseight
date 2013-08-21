@@ -121,7 +121,7 @@ body {
       }
 
       i {
-        display: none;
+        .hide;
       }
     }
   }
@@ -134,14 +134,12 @@ body {
   .board {
     .cell {
       i {
-        margin-top: -2px;
-        margin-left: -1px;
-        color: #1e1e1e;
-        background-image: url(images/glyphicons-halflings.png);
+        .show;
+        color: #330000;
       }
 
       img {
-        display: none;
+        .hide;
       }
     }
   }
@@ -161,7 +159,7 @@ body {
   float: left;
 }
 
-.dark {
+.cell-dark {
   background-color: rgba(77,38,22,.6);
 }
 

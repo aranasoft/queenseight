@@ -22,7 +22,7 @@ queensEight.directive("cell", function () {
       var column = scope.$index;
 
       element.addClass('cell');
-      if (queensEight.isDark(row, column)) element.addClass('dark');
+      if (queensEight.isDark(row, column)) element.addClass('cell-dark');
 
       element.bind("click", function () {
         scope.toggleQueen(row, column);
