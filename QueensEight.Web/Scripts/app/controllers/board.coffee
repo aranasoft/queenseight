@@ -2,15 +2,21 @@
   solutions: $.connection.solutionHub.server.fetchSolutions()
 
 queensEight.controller "GameController", ['$scope', ($scope) ->
+  $scope.solutionUnavailable = false
   solutionsHub = $.connection.solutionsHub
   solutionsHub.client.solutionAvailable = (serializedSolution) ->
-    console.log 'serialized solution: ',serializedSolution
     solution = JSON.parse(serializedSolution)
-    $scope.solutions.push solution
-    if( $scope.activeSolutions[0].requestHash == solution.requestHash )
-      $scope.activeSolutions[0].positions = solution.positions
-      $scope.activeSolutions[0].hash = solution.hash
-    $scope.$apply()
+    if( solution.positions.length == 0 )
+      if( $scope.activeSolutions[0].requestHash == solution.requestHash )
+        $scope.solutionUnavailable = true
+        $scope.$apply()
+    else
+      $scope.solutions.push solution
+      if( $scope.activeSolutions[0].requestHash == solution.requestHash )
+        $scope.solutionUnavailable = false
+        $scope.activeSolutions[0].positions = solution.positions
+        $scope.activeSolutions[0].hash = solution.hash
+      $scope.$apply()
 
   $.connection.hub.start().done ->
     $.connection.solutionsHub.server.fetchSolutions().done (solutionsJson) ->

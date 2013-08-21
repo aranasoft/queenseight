@@ -5,6 +5,7 @@
 <div class="container" ng-controller="GameController">
   <div class="row">
     <div class="span2" ng-controller="SolutionsController">
+      <div>Solutions Found: {{solutions.length}}</div>
       <div ng-repeat="solution in solutions" ng-controller="BoardController">
         <div class="chesstable chesstable-small">
           <div class="board"></div>
@@ -12,6 +13,7 @@
       </div>
     </div>
     <div class="span10">
+      <div ng-show="solutionUnavailable">No solution available for these queens</div>
       <div ng-controller="BoardController" ng-repeat="solution in activeSolutions">
         <div class="chesstable chesstable-large">
           <div class="board" interactive></div>

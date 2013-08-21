@@ -9,18 +9,26 @@
     '$scope', function($scope) {
       var solutionsHub;
 
+      $scope.solutionUnavailable = false;
       solutionsHub = $.connection.solutionsHub;
       solutionsHub.client.solutionAvailable = function(serializedSolution) {
         var solution;
 
-        console.log('serialized solution: ', serializedSolution);
         solution = JSON.parse(serializedSolution);
-        $scope.solutions.push(solution);
-        if ($scope.activeSolutions[0].requestHash === solution.requestHash) {
-          $scope.activeSolutions[0].positions = solution.positions;
-          $scope.activeSolutions[0].hash = solution.hash;
+        if (solution.positions.length === 0) {
+          if ($scope.activeSolutions[0].requestHash === solution.requestHash) {
+            $scope.solutionUnavailable = true;
+            return $scope.$apply();
+          }
+        } else {
+          $scope.solutions.push(solution);
+          if ($scope.activeSolutions[0].requestHash === solution.requestHash) {
+            $scope.solutionUnavailable = false;
+            $scope.activeSolutions[0].positions = solution.positions;
+            $scope.activeSolutions[0].hash = solution.hash;
+          }
+          return $scope.$apply();
         }
-        return $scope.$apply();
       };
       return $.connection.hub.start().done(function() {
         return $.connection.solutionsHub.server.fetchSolutions().done(function(solutionsJson) {

@@ -17,7 +17,6 @@ namespace QueensEight.Worker
     {
         private bool _isStopping = false;
         private bool _hasRunCompleted = false;
-        private List<Solution> _solutions = new List<Solution>();
 
         public override void Run()
         {
@@ -45,18 +44,11 @@ namespace QueensEight.Worker
                     var solution = new Solution
                     {
                         Hash = Position.ListHash(positions),
-                        Positions = positions
+                        Positions = positions,
+                        RequestHash = currentSolutionRequest.RequestHash
                     };
 
-                    if (positions.Any())
-                    {
-                        if (_solutions.All(s => s.Hash != solution.Hash))
-                        {
-                            solution.RequestHash = currentSolutionRequest.RequestHash;
-                            ServiceBusUtilities.SolutionAvailableTopic.PublishSolution(solution);
-                            _solutions.Add(solution);
-                        }
-                    }
+                    ServiceBusUtilities.SolutionAvailableTopic.PublishSolution(solution);
                 }
                 else
                 {
