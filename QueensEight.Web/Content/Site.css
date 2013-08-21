@@ -6351,56 +6351,123 @@ body {
   width: 1024px;
   margin: 20px auto;
 }
-.chesstable {
+.background-wood {
   background: url(images/wood.png) repeat top left;
-  margin: 30px auto 0;
+}
+.chesstable {
+  width: 604px;
+  height: 604px;
   -webkit-box-shadow: 0 2px 1px rgba(0, 0, 0, 0.25);
   -moz-box-shadow: 0 2px 1px rgba(0, 0, 0, 0.25);
   box-shadow: 0 2px 1px rgba(0, 0, 0, 0.25);
-}
-.chesstable-large {
-  width: 604px;
-  height: 604px;
+  background: url(images/wood.png) repeat top left;
+  margin: 30px auto 0;
   padding: 20px;
 }
-.chesstable-large .board {
+.chesstable .board {
   width: 600px;
   height: 600px;
   border: 2px solid #8b6a56;
   margin: auto;
 }
-.chesstable-large .board .cell {
+.chesstable .board .cell {
   width: 75px;
   height: 75px;
 }
-.chesstable-large .board .cell img {
+.chesstable .board .cell img {
   width: 65px;
   height: 65px;
   margin: 5px;
 }
-.chesstable-large .board .cell i {
+.chesstable .board .cell i {
+  color: #330000;
   display: none;
 }
-.chesstable-small {
-  width: 108px;
-  height: 108px;
-  padding: 6px;
+.active-solution {
+  position: relative;
 }
-.chesstable-small .board {
-  width: 104px;
-  height: 104px;
+.active-solution .msg-nosolution {
+  padding: 8px 35px 8px 14px;
+  margin-bottom: 20px;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  background-color: #fcf8e3;
+  border: 1px solid #fbeed5;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  color: #c09853;
+  background-color: #f2dede;
+  border-color: #eed3d7;
+  color: #b94a48;
+  text-align: center;
+  padding: 20px 0;
+  position: absolute;
+  width: 70%;
+  top: 40%;
+  left: 15%;
+  z-index: 100;
+}
+.active-solution .msg-nosolution .msg-close {
+  float: right;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 20px;
+  color: #000000;
+  text-shadow: 0 1px 0 #ffffff;
+  opacity: 0.2;
+  filter: alpha(opacity=20);
+  pointer: default;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+}
+.active-solution .msg-nosolution .msg-close:hover,
+.active-solution .msg-nosolution .msg-close:focus {
+  color: #000000;
+  text-decoration: none;
+  cursor: pointer;
+  opacity: 0.4;
+  filter: alpha(opacity=40);
+}
+.previous-solutions {
+  min-height: 604px;
+  background: url(images/wood.png) repeat top left;
+  -webkit-box-shadow: 0 2px 1px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0 2px 1px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 2px 1px rgba(0, 0, 0, 0.25);
+  margin-top: 30px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.previous-solutions .section-header {
+  text-align: center;
+  color: #330000;
+  font-weight: bold;
+  font-family: "Libra BT Regular", "Times New Roman", Times, serif;
+}
+.previous-solutions .chesstable {
+  width: 124px;
+  height: 124px;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  padding: 6px;
+  margin-top: 10px;
+}
+.previous-solutions .chesstable .board {
+  width: 120px;
+  height: 120px;
   border: 2px solid #8b6a56;
   margin: auto;
 }
-.chesstable-small .board .cell {
-  width: 13px;
-  height: 13px;
+.previous-solutions .chesstable .board .cell {
+  width: 15px;
+  height: 15px;
 }
-.chesstable-small .board .cell i {
+.previous-solutions .chesstable .board .cell i {
   display: block;
-  color: #330000;
 }
-.chesstable-small .board .cell img {
+.previous-solutions .chesstable .board .cell img {
   display: none;
 }
 .board-actions {

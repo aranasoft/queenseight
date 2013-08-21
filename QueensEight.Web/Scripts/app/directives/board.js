@@ -31,7 +31,7 @@ queensEight.directive("cell", function () {
   };
 });
 
-queensEight.isDark = function (row, column){
+queensEight.isDark = function (row, column) {
     var rowOffset = row % 2;
     var cellIndex = (row * 8 + column + rowOffset) % 2;
     var isDark = cellIndex == 1;

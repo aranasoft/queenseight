@@ -1,4 +1,5 @@
-(function() {
+﻿(function() {
+
   queensEight.factory("SolutionService", function() {
     return {
       solutions: $.connection.solutionHub.server.fetchSolutions()
@@ -8,12 +9,10 @@
   queensEight.controller("GameController", [
     '$scope', function($scope) {
       var solutionsHub;
-
       $scope.solutionUnavailable = false;
       solutionsHub = $.connection.solutionsHub;
       solutionsHub.client.solutionAvailable = function(serializedSolution) {
         var solution;
-
         solution = JSON.parse(serializedSolution);
         if (solution.positions.length === 0) {
           if ($scope.activeSolutions[0].requestHash === solution.requestHash) {
@@ -30,10 +29,12 @@
           return $scope.$apply();
         }
       };
+      $scope.clearErrors = function() {
+        return $scope.solutionUnavailable = false;
+      };
       return $.connection.hub.start().done(function() {
         return $.connection.solutionsHub.server.fetchSolutions().done(function(solutionsJson) {
           var solution;
-
           $scope.solutions = JSON.parse(solutionsJson);
           $scope.activeSolutions = [];
           solution = {};
@@ -50,14 +51,12 @@
   queensEight.controller("BoardController", [
     '$scope', function($scope) {
       var _base;
-
       $scope.solution || ($scope.solution = {});
       (_base = $scope.solution).positions || (_base.positions = []);
       $scope.rowIndicies = [0, 1, 2, 3, 4, 5, 6, 7];
       $scope.columnIndicies = [0, 1, 2, 3, 4, 5, 6, 7];
       $scope.toggleQueen = function(row, column) {
         var position;
-
         if (!$scope.isInteractive) {
           return;
         }
@@ -65,10 +64,10 @@
           row: row,
           column: column
         };
+        $scope.$parent.$parent.clearErrors();
         if ($scope.hasQueen(row, column)) {
           return $scope.$apply(function() {
             var existingPosition, positions;
-
             positions = $scope.solution.positions;
             existingPosition = _(positions).find(function(p) {
               return p.row === position.row && p.column === position.column;
@@ -88,14 +87,14 @@
       };
       $scope.requestSolution = function() {
         var hash;
-
         hash = queensEight.hashFromPositions($scope.solution.positions);
         $scope.solution.requestHash = hash;
         return $.connection.solutionsHub.server.requestSolution($scope.solution);
       };
       return $scope.clearBoard = function() {
         $scope.solution.hash = '';
-        return $scope.solution.positions = [];
+        $scope.solution.positions = [];
+        return $scope.$parent.$parent.clearErrors();
       };
     }
   ]);

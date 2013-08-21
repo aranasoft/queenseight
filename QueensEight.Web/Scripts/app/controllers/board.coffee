@@ -18,6 +18,9 @@ queensEight.controller "GameController", ['$scope', ($scope) ->
         $scope.activeSolutions[0].hash = solution.hash
       $scope.$apply()
 
+  $scope.clearErrors = ->
+    $scope.solutionUnavailable = false
+
   $.connection.hub.start().done ->
     $.connection.solutionsHub.server.fetchSolutions().done (solutionsJson) ->
       $scope.solutions = JSON.parse solutionsJson
@@ -42,6 +45,7 @@ queensEight.controller "BoardController", ['$scope', ($scope) ->
   $scope.toggleQueen = (row, column) ->
     return unless $scope.isInteractive
     position = { row: row, column: column }
+    $scope.$parent.$parent.clearErrors()
     if ($scope.hasQueen(row, column)) 
       $scope.$apply ->
         positions = $scope.solution.positions
@@ -63,5 +67,6 @@ queensEight.controller "BoardController", ['$scope', ($scope) ->
   $scope.clearBoard = ->
     $scope.solution.hash = ''
     $scope.solution.positions = []
+    $scope.$parent.$parent.clearErrors()
 ]
 

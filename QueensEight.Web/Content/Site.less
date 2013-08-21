@@ -76,7 +76,14 @@
   line-height: @baseLineHeight * 1.5;
 }
 
-.legal { font-size: 70%; line-height: 140%; a { color: @white; }}
+.legal {
+  font-size: 70%;
+  line-height: 140%;
+
+  a {
+    color: @white;
+  }
+}
 
 html, body {
   height: 100%;
@@ -99,18 +106,15 @@ body {
   margin: 20px auto;
 }
 
-.board {
-  //background: url(images/wood.png);
+.background-wood {
+  background: url(images/wood.png) repeat top left;
 }
 
 .chesstable {
-  background: url(images/wood.png) repeat top left;
-  margin: 30px auto 0;
-  .box-shadow(0 2px 1px rgba(0,0,0,.25));
-}
-
-.chesstable-large {
   .chess-table(@cellSizeLarge, 2px);
+  .box-shadow(0 2px 1px rgba(0,0,0,.25));
+  .background-wood;
+  margin: 30px auto 0;
   padding: 20px;
 
   .board {
@@ -121,25 +125,69 @@ body {
       }
 
       i {
+        color: @redDark;
         .hide;
       }
     }
   }
 }
 
-.chesstable-small {
-  .chess-table(@cellSizeSmall, 2px);
-  padding: 6px;
+.active-solution {
+  position: relative;
 
-  .board {
-    .cell {
-      i {
-        .show;
-        color: #330000;
-      }
+  .msg-nosolution {
+    .alert;
+    .alert-error;
+    .text-center;
+    padding: 20px 0;
+    position: absolute;
+    width: 70%;
+    top: 40%;
+    left: 15%;
+    z-index: 100;
 
-      img {
-        .hide;
+    .msg-close {
+      .close;
+      pointer: default;
+      position: absolute;
+      top: 10px;
+      right: 20px;
+    }
+  }
+}
+
+.previous-solutions {
+  @minHeight: (@cellSizeLarge * @cellCount) + 4px;
+
+  min-height: @minHeight;
+  .background-wood;
+  .box-shadow(0 2px 1px rgba(0,0,0,.25));
+  margin-top: 30px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+  .section-header {
+    .text-center;
+    color: @redDark;
+    font-weight: bold;
+    font-family: @altFontFamily;
+  }
+
+  .chesstable {
+    .chess-table(@cellSizeSmall, 2px);
+    .box-shadow(none);
+    padding: 6px;
+    margin-top: 10px;
+
+    .board {
+      .cell {
+        i {
+          .show;
+        }
+
+        img {
+          .hide;
+        }
       }
     }
   }
@@ -157,10 +205,10 @@ body {
 
 .cell {
   float: left;
-}
 
-.cell-dark {
-  background-color: rgba(77,38,22,.6);
+  &-dark {
+    background-color: rgba(77,38,22,.6);
+  }
 }
 
 .footer-push {
@@ -178,7 +226,9 @@ body {
   width: 100%;
   vertical-align: middle;
 
-  a { color: @white; }
+  a {
+    color: @white;
+  }
 
   .logo {
     width: 150px;
