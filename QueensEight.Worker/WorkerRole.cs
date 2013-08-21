@@ -60,7 +60,7 @@ namespace QueensEight.Worker
                 }
                 else
                 {
-                    Thread.Sleep(100);
+                    Thread.Sleep(500);
                 }
             }
         }

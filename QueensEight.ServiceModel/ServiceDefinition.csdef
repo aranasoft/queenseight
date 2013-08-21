@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ServiceDefinition name="QueensEight.ServiceModel" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition" schemaVersion="2013-03.2.0">
-  <WebRole name="QueensEight.Web" vmsize="ExtraSmall">
+  <WebRole name="QueensEight.Web" vmsize="Small">
     <Sites>
       <Site name="Web">
         <Bindings>
@@ -14,7 +14,7 @@
     <Imports>
     </Imports>
   </WebRole>
-  <WorkerRole name="QueensEight.Worker" vmsize="ExtraSmall">
+  <WorkerRole name="QueensEight.Worker" vmsize="Small">
     <Imports>
       <Import moduleName="Diagnostics" />
     </Imports>
