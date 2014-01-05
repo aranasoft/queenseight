@@ -37,7 +37,7 @@
     <ServiceConfiguration Include="ServiceConfiguration.Cloud.cscfg" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Web\Web.csproj">
+    <ProjectReference Include="..\API\API.csproj">
       <Name>QueensEight.Web</Name>
       <Project>{9451c20e-1599-4e1b-8db3-6796b6f184e5}</Project>
       <Private>True</Private>
