@@ -190,10 +190,6 @@
     <Compile Include="App_Start\ServiceBusConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="ExcludedConfiguration.cs">
-      <SubType>
-      </SubType>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -235,6 +231,9 @@
     <Content Include="Content\font\libra_bt-webfont.ttf" />
     <Content Include="Content\font\libra_bt-webfont.woff" />
     <Content Include="Content\mixins.less" />
+    <Content Include="azureSettings.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Content\site.less">
       <Compile>False</Compile>
       <Minify>False</Minify>
@@ -406,6 +405,7 @@
     <Content Include="Scripts\app\templates\board.coffee" />
     <Content Include="Scripts\app\controllers\board.coffee" />
     <Content Include="Content\variables.less" />
+    <None Include="Properties\PublishProfiles\Local.pubxml" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
     <Content Include="Scripts\angular-bootstrap-prettify.js" />
     <Content Include="Scripts\angular-bootstrap-prettify.min.js" />
@@ -748,7 +748,7 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="packages.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\Index.cshtml" />
@@ -789,6 +789,12 @@
   </ProjectExtensions>
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.8\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.8\tools\Microsoft.Bcl.Build.targets')" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <PropertyGroup>
+    <PreBuildEvent>pushd $(ProjectDir)
+echo | set /p dummyName=&gt;&gt;azureSettings.config
+popd
+</PreBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

@@ -18,9 +18,9 @@ namespace QueensEight.Processor.ServiceBus
 
         public static void Setup()
         {
-            var namespaceAddress = ServiceBusEnvironment.CreateServiceUri("sb", ExcludedConfiguration.Namespace, string.Empty);
+            var namespaceAddress = ServiceBusEnvironment.CreateServiceUri("sb", Configuration.Current.Namespace, string.Empty);
 
-            var tokenProvider = TokenProvider.CreateSharedSecretTokenProvider(ExcludedConfiguration.IssuerName, ExcludedConfiguration.IssuerKey);
+            var tokenProvider = TokenProvider.CreateSharedSecretTokenProvider(Configuration.Current.IssuerName, Configuration.Current.IssuerKey);
             NamespaceManager = new NamespaceManager(namespaceAddress, tokenProvider);
             MessagingFactory = MessagingFactory.Create(namespaceAddress, tokenProvider);
 
