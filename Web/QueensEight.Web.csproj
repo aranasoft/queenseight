@@ -754,7 +754,7 @@
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\QueensEight.Processor\QueensEight.Processor.csproj">
+    <ProjectReference Include="..\Processor\QueensEight.Processor.csproj">
       <Project>{fb8fbc3c-e1d5-40df-acd6-b24649020e53}</Project>
       <Name>QueensEight.Processor</Name>
     </ProjectReference>
