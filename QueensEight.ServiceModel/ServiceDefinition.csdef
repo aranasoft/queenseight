@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ServiceDefinition name="QueensEight.ServiceModel" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition" schemaVersion="2013-03.2.0">
+<ServiceDefinition name="QueensEight.ServiceModel" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition" schemaVersion="2013-10.2.2">
   <WebRole name="QueensEight.Web" vmsize="Small">
     <Sites>
       <Site name="Web">
@@ -11,8 +11,7 @@
     <Endpoints>
       <InputEndpoint name="Endpoint1" protocol="http" port="80" />
     </Endpoints>
-    <Imports>
-    </Imports>
+    <Imports></Imports>
   </WebRole>
   <WorkerRole name="QueensEight.Worker" vmsize="Small">
     <Imports>

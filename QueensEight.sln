@@ -1,16 +1,18 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
-Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "QueensEight.ServiceModel", "QueensEight.ServiceModel\QueensEight.ServiceModel.ccproj", "{B713757C-44FF-4DFE-98DE-A3F0014298E7}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueensEight.Web", "QueensEight.Web\QueensEight.Web.csproj", "{9451C20E-1599-4E1B-8DB3-6796B6F184E5}"
-EndProject
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{87585D92-892A-4EFA-B297-3989FAF1BA30}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\NuGet.Config = .nuget\NuGet.Config
 		.nuget\NuGet.exe = .nuget\NuGet.exe
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
+EndProject
+Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "QueensEight.ServiceModel", "QueensEight.ServiceModel\QueensEight.ServiceModel.ccproj", "{B713757C-44FF-4DFE-98DE-A3F0014298E7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueensEight.Web", "QueensEight.Web\QueensEight.Web.csproj", "{9451C20E-1599-4E1B-8DB3-6796B6F184E5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueensEight.Processor", "QueensEight.Processor\QueensEight.Processor.csproj", "{FB8FBC3C-E1D5-40DF-ACD6-B24649020E53}"
 EndProject
