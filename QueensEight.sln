@@ -10,15 +10,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{87585D
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
-Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "QueensEight.ServiceModel", "ServiceModel\QueensEight.ServiceModel.ccproj", "{B713757C-44FF-4DFE-98DE-A3F0014298E7}"
+Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "QueensEight.ServiceModel", "ServiceModel\ServiceModel.ccproj", "{B713757C-44FF-4DFE-98DE-A3F0014298E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueensEight.Web", "Web\QueensEight.Web.csproj", "{9451C20E-1599-4E1B-8DB3-6796B6F184E5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueensEight.Web", "Web\Web.csproj", "{9451C20E-1599-4E1B-8DB3-6796B6F184E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueensEight.Processor", "Processor\QueensEight.Processor.csproj", "{FB8FBC3C-E1D5-40DF-ACD6-B24649020E53}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueensEight.Processor", "Processor\Processor.csproj", "{FB8FBC3C-E1D5-40DF-ACD6-B24649020E53}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueensEight.Processor.Test", "Processor.Test\QueensEight.Processor.Test.csproj", "{A181AEA0-03B3-454D-B32B-DBC79EEE3406}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueensEight.Processor.Test", "Processor.Test\Processor.Test.csproj", "{A181AEA0-03B3-454D-B32B-DBC79EEE3406}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueensEight.Worker", "Worker\QueensEight.Worker.csproj", "{B7DB24A3-D442-4586-9455-B534C21E0D1A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueensEight.Worker", "Worker\Worker.csproj", "{B7DB24A3-D442-4586-9455-B534C21E0D1A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

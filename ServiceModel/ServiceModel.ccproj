@@ -37,7 +37,7 @@
     <ServiceConfiguration Include="ServiceConfiguration.Cloud.cscfg" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Web\QueensEight.Web.csproj">
+    <ProjectReference Include="..\Web\Web.csproj">
       <Name>QueensEight.Web</Name>
       <Project>{9451c20e-1599-4e1b-8db3-6796b6f184e5}</Project>
       <Private>True</Private>
@@ -45,7 +45,7 @@
       <RoleName>QueensEight.Web</RoleName>
       <UpdateDiagnosticsConnectionStringOnPublish>True</UpdateDiagnosticsConnectionStringOnPublish>
     </ProjectReference>
-    <ProjectReference Include="..\QueensEight.Worker\QueensEight.Worker.csproj">
+    <ProjectReference Include="..\Worker\Worker.csproj">
       <Name>QueensEight.Worker</Name>
       <Project>{b7db24a3-d442-4586-9455-b534c21e0d1a}</Project>
       <Private>True</Private>
@@ -55,14 +55,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="QueensEight.WebContent\" />
-    <Folder Include="QueensEight.WorkerContent\" />
+    <Folder Include="WebContent\" />
+    <Folder Include="WorkerContent\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="QueensEight.WebContent\diagnostics.wadcfg">
+    <Content Include="WebContent\diagnostics.wadcfg">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="QueensEight.WorkerContent\diagnostics.wadcfg">
+    <Content Include="WorkerContent\diagnostics.wadcfg">
       <SubType>Content</SubType>
     </Content>
   </ItemGroup>

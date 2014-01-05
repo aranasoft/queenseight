@@ -85,7 +85,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Processor\QueensEight.Processor.csproj">
+    <ProjectReference Include="..\Processor\Processor.csproj">
       <Project>{fb8fbc3c-e1d5-40df-acd6-b24649020e53}</Project>
       <Name>QueensEight.Processor</Name>
     </ProjectReference>
