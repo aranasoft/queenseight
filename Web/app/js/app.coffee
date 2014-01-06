@@ -1,1 +1,1 @@
-﻿queensEight = angular.module 'QueensEight', []
+﻿window.queensEight = angular.module 'QueensEight', []
