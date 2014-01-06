@@ -83,7 +83,7 @@
   <PropertyGroup>
     <PreBuildEvent>pushd $(ProjectDir)
 cd ..\Web
-lineman clean build --no-color
+.\node_modules\.bin\lineman clean build --no-color
 popd
 </PreBuildEvent>
   </PropertyGroup>
