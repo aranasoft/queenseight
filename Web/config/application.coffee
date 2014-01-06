@@ -1,4 +1,14 @@
 module.exports = (lineman) =>
+  loadNpmTasks: ["grunt-bower-task"]
+
+  prependTasks:
+    common: ["bower:install"]
+
+  bower:
+    install:
+      options:
+        copy: false	
+
   concat:
     js:
       src: ["<%= files.template.generated %>", "<%= files.coffee.generated %>", "<%= files.js.app %>"]

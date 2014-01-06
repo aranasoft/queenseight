@@ -80,4 +80,11 @@
       </AzureRoleContent>
     </ItemGroup>
   </Target>
+  <PropertyGroup>
+    <PreBuildEvent>pushd $(ProjectDir)
+cd ..\Web
+lineman clean build --no-color
+popd
+</PreBuildEvent>
+  </PropertyGroup>
 </Project>

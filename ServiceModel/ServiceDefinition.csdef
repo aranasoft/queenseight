@@ -1,21 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ServiceDefinition name="QueensEight.ServiceModel" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition" schemaVersion="2013-10.2.2">
-  <WebRole name="API" vmsize="Small">
+<ServiceDefinition xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="QueensEight.ServiceModel" schemaVersion="2013-10.2.2" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition">
+  <WebRole name="API">
+    <Imports>
+      <Import moduleName="Diagnostics" />
+    </Imports>
+    <Endpoints>
+      <InputEndpoint name="Endpoint1" protocol="http" port="80" />
+    </Endpoints>
     <Sites>
-      <Site name="Web">
+      <Site name="API" physicalDirectory="..\..\..\API">
         <Bindings>
           <Binding name="Endpoint1" endpointName="Endpoint1" />
         </Bindings>
       </Site>
     </Sites>
-    <Endpoints>
-      <InputEndpoint name="Endpoint1" protocol="http" port="80" />
-    </Endpoints>
-    <Imports>
-      <Import moduleName="Diagnostics" />
-    </Imports>
   </WebRole>
-  <WorkerRole name="Worker" vmsize="Small">
+  <WorkerRole name="Worker">
     <Imports>
       <Import moduleName="Diagnostics" />
     </Imports>
