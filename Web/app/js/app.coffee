@@ -1,0 +1,1 @@
+﻿queensEight = angular.module 'QueensEight', []

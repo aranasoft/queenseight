@@ -7,4 +7,5 @@ module.exports = (lineman) =>
       "vendor/components/angular/angular.js"
       "vendor/js/**/*.js"
     ]
-
+    concatenatedVendor: "generated/js/vendor.js"
+    minifiedVendor: "dist/js/vendor.js"

@@ -1,11 +1,72 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= pkg.name %></title>
-
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title><%= pkg.title %></title>
     <link rel="stylesheet" type="text/css" href="<%= css %>" media="all" />
-  </head>
-  <body>
-    <script type="text/javascript" src="<%= js %>"></script>
-  </body>
+    <link rel="SHORTCUT ICON" href='favicon.ico'/>
+</head>
+<body ng-app="QueensEight">
+<div class="main_content">
+    <div class="header"></div>
+    <div class="container" ng-controller="GameController">
+        <div class="row">
+            <div class="span3" ng-controller="SolutionsController">
+                <div class="previous-solutions">
+                    <div class="section-header">Solutions Found: {{solutions.length}}</div>
+                    <div ng-repeat="solution in solutions" ng-controller="BoardController">
+                        <div class="chesstable">
+                            <div class="board"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="span9">
+                <div class="active-solution">
+                    <div ng-show="solutionUnavailable" ng-click="clearErrors()" class="msg-nosolution"><div class="msg-close">&times;</div> No solution available for this queen pattern.</div>
+                    <div ng-controller="BoardController" ng-repeat="solution in activeSolutions">
+                        <div class="chesstable">
+                            <div class="board" interactive></div>
+                        </div>
+                        <div class="board-actions">
+                            <button class="btn btn-primary btn-large" ng-click="requestSolution()">Request Solution</button>
+                            <button class="btn btn-primary btn-large" ng-click="clearBoard()">Clear Board</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-push"></div>
+</div>
+<div class="footer" >
+    <div class="container">
+        <div class="row">
+            <div class="span6">
+                <div class="logo">
+                    <img src="~/Content/images/Arana.png"/>
+                </div>
+            </div>
+            <div class="span6 text-right">
+                <p><a href="http://www.github.com/aranasoft/queenseight"><i class="icon-github-sign icon-light icon-large"></i> Queens Eight on GitHub</a>
+                    |
+                    <a href="http://www.aranasoft.com" title="Arana Software Web Site"><i class="icon-external-link-sign icon-light icon-large"></i></a>
+                    <a href="http://www.twitter.com/aranasoft" title="Arana Software on Twitter"><i class="icon-twitter-sign icon-light icon-large"></i></a>
+                    <a href="http://www.github.com/aranasoft"><i class="icon-github-sign icon-light icon-large"></i></a>
+                </p>
+
+                <div class="muted legal">Built by <a href="http://www.twitter.com/dburton">@dburton</a>
+                    and <a href="http://www.twitter.com/jayharris">@jayharris</a>.
+                    Queens Eight logo by <a href="http://projeqt.com/jlucas">John Lucas</a>.</div>
+                <div class="muted legal">Copyright &copy; 2013-2014 Arana Software. All rights reserved.</div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="<%= jsVendor %>"></script>
+<script src="signalr/hubs" type="text/javascript"> </script>
+<script type="text/javascript" src="<%= js %>"></script>
+</body>
 </html>
+
