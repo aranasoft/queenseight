@@ -20,6 +20,18 @@ module.exports = (lineman) =>
     dist:
       context:
         jsVendor: "js/vendor.js"
+  watch:
+    less:
+      files: [
+        "<%= files.less.vendor %>"
+        "<%= files.less.app %>"
+        "<%= files.less.watch %>"
+      ]
+      tasks: ["less", "concat:css"]
+  webfonts:
+    files:
+      "vendor/components/font-awesome/font/": "vendor/components/font-awesome/font/**/*.*"
+  ###
   server:
     apiProxy:
       enabled: true
