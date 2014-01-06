@@ -12,6 +12,7 @@
     <AssemblyName>QueensEight.ServiceModel</AssemblyName>
     <StartDevelopmentStorage>True</StartDevelopmentStorage>
     <Name>QueensEight.ServiceModel</Name>
+    <PackageEnableRemoteDebugger>False</PackageEnableRemoteDebugger>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -38,28 +39,28 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\API\API.csproj">
-      <Name>QueensEight.Web</Name>
+      <Name>API</Name>
       <Project>{9451c20e-1599-4e1b-8db3-6796b6f184e5}</Project>
       <Private>True</Private>
       <RoleType>Web</RoleType>
-      <RoleName>QueensEight.Web</RoleName>
+      <RoleName>API</RoleName>
       <UpdateDiagnosticsConnectionStringOnPublish>True</UpdateDiagnosticsConnectionStringOnPublish>
     </ProjectReference>
     <ProjectReference Include="..\Worker\Worker.csproj">
-      <Name>QueensEight.Worker</Name>
+      <Name>Worker</Name>
       <Project>{b7db24a3-d442-4586-9455-b534c21e0d1a}</Project>
       <Private>True</Private>
       <RoleType>Worker</RoleType>
-      <RoleName>QueensEight.Worker</RoleName>
+      <RoleName>Worker</RoleName>
       <UpdateDiagnosticsConnectionStringOnPublish>True</UpdateDiagnosticsConnectionStringOnPublish>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="WebContent\" />
+    <Folder Include="APIContent\" />
     <Folder Include="WorkerContent\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="WebContent\diagnostics.wadcfg">
+    <Content Include="APIContent\diagnostics.wadcfg">
       <SubType>Content</SubType>
     </Content>
     <Content Include="WorkerContent\diagnostics.wadcfg">
@@ -72,4 +73,11 @@
     <CloudExtensionsDir Condition=" '$(CloudExtensionsDir)' == '' ">$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Windows Azure Tools\2.2\</CloudExtensionsDir>
   </PropertyGroup>
   <Import Project="$(CloudExtensionsDir)Microsoft.WindowsAzure.targets" />
+  <Target Name="BeforeAddRoleContent">
+    <ItemGroup>
+      <AzureRoleContent Include="..\Web\dist\">
+        <RoleName>API</RoleName>
+      </AzureRoleContent>
+    </ItemGroup>
+  </Target>
 </Project>
