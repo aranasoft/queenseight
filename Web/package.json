@@ -1,11 +1,10 @@
 {
   "name": "-web",
   "title": "An HTML/JS/CSS app",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "private": true,
   "author": {
-    "name": "John Doe",
-    "company": "ACME, Inc."
+    "company": "Arana Software"
   },
   "devDependencies": {
     "lineman": "~0.21.3"
