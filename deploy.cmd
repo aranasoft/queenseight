@@ -61,6 +61,10 @@ IF NOT DEFINED MSBUILD_PATH (
   SET MSBUILD_PATH=%WINDIR%\Microsoft.NET\Framework\v4.0.30319\msbuild.exe
 )
 
+IF NOT DEFINED NUGET_EXE (
+  SET NUGET_EXE=%DEPLOYMENT_SOURCE%\.nuget\nuget.exe
+)
+
 goto Deployment
 
 :: Utility Functions
@@ -102,13 +106,13 @@ goto :EOF
 :Deployment
 echo Handling .NET Web Application deployment.
 
-:: 1. Restore NuGet packages
+ECHO 1. Restore NuGet packages
 IF /I "QueensEight.sln" NEQ "" (
   call "%NUGET_EXE%" restore "%DEPLOYMENT_SOURCE%\QueensEight.sln"
   IF !ERRORLEVEL! NEQ 0 goto error
 )
 
-:: 2. Build to the temporary path
+ECHO 2. Build to the temporary path
 IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
   %MSBUILD_PATH% "%DEPLOYMENT_SOURCE%\API\API.csproj" /nologo /verbosity:m /t:Build /t:pipelinePreDeployCopyAllFilesToOneFolder /p:_PackageTempDir="%DEPLOYMENT_TEMP%";AutoParameterizationWebConfigConnectionStrings=false;Configuration=Release /p:SolutionDir="%DEPLOYMENT_SOURCE%\" %SCM_BUILD_ARGS%
 ) ELSE (
@@ -117,48 +121,49 @@ IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
 
 IF !ERRORLEVEL! NEQ 0 goto error
 
-:: 3. KuduSync
-IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
-  call %KUDU_SYNC_CMD% -v 50 -f "%DEPLOYMENT_TEMP%" -t "%DEPLOYMENT_TARGET%" -n "%NEXT_MANIFEST_PATH%" -p "%PREVIOUS_MANIFEST_PATH%" -i ".git;.hg;.deployment;deploy.cmd"
-  IF !ERRORLEVEL! NEQ 0 goto error
-)
-
 echo Handling node.js deployment.
 
 pushd Web
 
-:: 1. Select node version
+ECHO 1. Select node version
 call :SelectNodeVersion
 
-:: 2. Install npm packages
+ECHO 2. Install npm packages
 IF EXIST "package.json" (
   call !NPM_CMD! install
   IF !ERRORLEVEL! NEQ 0 goto error
 )
 
-:: 3. Install bower packages
+ECHO 3. Install bower packages
 IF EXIST "bower.json" (
   call !NPM_CMD! install bower
   IF !ERRORLEVEL! NEQ 0 goto error
-  ./node_modules/.bin/bower install
+  call .\node_modules\.bin\bower install
   IF !ERRORLEVEL! NEQ 0 goto error
 )
 
-:: 4. Run Lineman Tasks
+ECHO 4. Run Lineman Tasks
 IF EXIST "Gruntfile.js" (
   call !NPM_CMD! install lineman
   IF !ERRORLEVEL! NEQ 0 goto error
-  ./node_modules/.bin/lineman clean build
+  call .\node_modules\.bin\lineman clean build
   IF !ERRORLEVEL! NEQ 0 goto error
 )
 
 popd
 
-:: 5. KuduSync
+ECHO 5. KuduSync
 IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
-  call %KUDU_SYNC_CMD% -v 50 -f "%DEPLOYMENT_SOURCE%\Web\dist" -t "%DEPLOYMENT_TARGET%" -n "%NEXT_MANIFEST_PATH%" -p "%PREVIOUS_MANIFEST_PATH%" -i ".git;.hg;.deployment;deploy.cmd"
+  call %KUDU_SYNC_CMD% -v 50 -f "%DEPLOYMENT_SOURCE%\Web\dist" -t "%DEPLOYMENT_TEMP%" -n "%DEPLOYMENT_SOURCE%\Web\Generated\manifest" -p "%DEPLOYMENT_SOURCE%\Web\Generated\manifest" -i ".git;.hg;.deployment;deploy.cmd"
   IF !ERRORLEVEL! NEQ 0 goto error
 )
+
+:: KuduSync
+IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
+  call %KUDU_SYNC_CMD% -v 50 -f "%DEPLOYMENT_TEMP%" -t "%DEPLOYMENT_TARGET%" -n "%NEXT_MANIFEST_PATH%" -p "%PREVIOUS_MANIFEST_PATH%" -i ".git;.hg;.deployment;deploy.cmd"
+  IF !ERRORLEVEL! NEQ 0 goto error
+)
+
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
