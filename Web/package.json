@@ -8,9 +8,7 @@
   },
   "devDependencies": {
     "lineman": "~0.21.3",
-    "grunt-bower-task": "~0.3.4",
-    "grunt": "~0.4.2",
-    "less": "~1.6.0"
+    "grunt-bower-task": "~0.3.4"
   },
   "scripts": {
     "start": "lineman run",
