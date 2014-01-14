@@ -24,7 +24,7 @@ queensEight.controller "GameController", ['$scope', ($scope) ->
   $.connection.hub.start().done ->
     $.connection.solutionsHub.server.fetchSolutions().done (solutionsJson) ->
       $scope.solutions = JSON.parse solutionsJson
-      $scope.activeSolutions = [] 
+      $scope.activeSolutions = []
       solution = {}
       solution.positions = []
       $scope.activeSolutions.push solution
@@ -46,18 +46,18 @@ queensEight.controller "BoardController", ['$scope', ($scope) ->
     return unless $scope.isInteractive
     position = { row: row, column: column }
     $scope.$parent.$parent.clearErrors()
-    if ($scope.hasQueen(row, column)) 
+    if ($scope.hasQueen(row, column))
       $scope.$apply ->
         positions = $scope.solution.positions
         existingPosition = _(positions).find (p)->
-          p.row == position.row and p.column == position.column;
-        positions.splice(positions.indexOf(existingPosition), 1);
+          p.row == position.row and p.column == position.column
+        positions.splice(positions.indexOf(existingPosition), 1)
     else
       $scope.$apply -> $scope.solution.positions.push(position)
 
   $scope.hasQueen = (row, column) ->
     return _($scope.solution.positions).any (position) ->
-      position.row == row and position.column == column;
+      position.row == row and position.column == column
 
   $scope.requestSolution = ->
     hash = queensEight.hashFromPositions $scope.solution.positions

@@ -7,9 +7,11 @@
     "company": "Arana Software"
   },
   "devDependencies": {
-    "lineman": "~0.21.3",
-    "grunt-bower-task": "~0.3.4",
-    "grunt": "~0.4.2"
+    "lineman": "~0.22.0",
+    "grunt": "~0.4.2",
+    "lineman-bower": "0.0.3",
+    "lineman-coffeelint": "~0.1.0",
+    "grunt-coffeelint": "~0.0"
   },
   "scripts": {
     "start": "lineman run",
