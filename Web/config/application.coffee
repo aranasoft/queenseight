@@ -1,5 +1,5 @@
 module.exports = (lineman) =>
-  concat:
+  concat_sourcemap:
     js:
       src: ["<%= files.template.generated %>", "<%= files.coffee.generated %>", "<%= files.js.app %>"]
       dest: "<%= files.js.concatenated %>"

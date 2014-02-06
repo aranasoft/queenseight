@@ -9,7 +9,7 @@
   "devDependencies": {
     "lineman": "~0.24.3",
     "grunt": "~0.4.2",
-    "lineman-bower": "0.0.3",
+    "lineman-bower": "~0.0.3",
     "lineman-coffeelint": "~0.1.1",
     "grunt-timer": "~0.3.0"
   },
