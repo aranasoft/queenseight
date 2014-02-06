@@ -27,7 +27,6 @@ module.exports = (lineman) =>
         "<%= files.less.app %>"
         "<%= files.less.watch %>"
       ]
-      tasks: ["less", "concat:css"]
   webfonts:
     files:
       "vendor/components/font-awesome/font/": "vendor/components/font-awesome/font/**/*.*"
