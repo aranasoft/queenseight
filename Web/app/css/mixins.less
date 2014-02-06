@@ -1,25 +1,45 @@
-.chess-table(@cellSize: 75px, @borderSize: 1px) {
-  @boardSize: @cellSize * @cellCount;
-  .square(@boardSize + (@borderSize * 2));
+.chess-table(@cell-size: 75px, @border-size: @board-border-width) {
+  @board-size: @cell-size * @board-cell-count;
+  .square(@board-size + (@border-size * 2));
+  .box-sizing(content-box);
+  .box-shadow(0 2px 1px rgba(0,0,0,.25));
+  .background-wood;
+  margin: 30px auto 0;
+  padding: @board-gutter-width;
 
   .board {
-    .square(@boardSize);
-    border: @borderSize solid @brownGray;
+    .square(@board-size);
+    .box-sizing(content-box);
+    border: @border-size solid @brown-gray;
     margin: auto;
 
     .cell {
-      .square(@cellSize);
+      .square(@cell-size);
+      
+      img {
+        .square(@cell-size * 0.86);
+        margin: @cell-size * 0.07;
+      }
+
+      i {
+        color: @red-dark;
+        .hide;
+      }
     }
   }
 }
 
-.font-face(@family, @fileName) {
+.background-wood() {
+  background: url(../img/wood.png) @brown-light repeat top left;
+}
+
+.font-face(@family, @file-name) {
   font-family: @family;
-  src: url('../font/@{fileName}-webfont.eot');
-  src: url('../font/@{fileName}-webfont.eot?#iefix') format('embedded-opentype'),
-  url('../font/@{fileName}-webfont.woff') format('woff'),
-  url('../font/@{fileName}-webfont.ttf') format('truetype'),
-  url('../font/@{fileName}-webfont.svg#libra_btregular') format('svg');
+  src: url('../fonts/@{file-name}-webfont.eot');
+  src: url('../fonts/@{file-name}-webfont.eot?#iefix') format('embedded-opentype'),
+  url('../fonts/@{file-name}-webfont.woff') format('woff'),
+  url('../fonts/@{file-name}-webfont.ttf') format('truetype'),
+  url('../fonts/@{file-name}-webfont.svg#libra_btregular') format('svg');
   font-weight: normal;
   font-style: normal;
 }

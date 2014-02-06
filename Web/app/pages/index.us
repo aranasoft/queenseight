@@ -12,7 +12,7 @@
     <div class="header"></div>
     <div class="container" ng-controller="GameController">
         <div class="row">
-            <div class="span3" ng-controller="SolutionsController">
+            <div class="col-solutions" ng-controller="SolutionsController">
                 <div class="previous-solutions">
                     <div class="section-header">Solutions Found: {{solutions.length}}</div>
                     <div ng-repeat="solution in solutions" ng-controller="BoardController">
@@ -22,7 +22,7 @@
                     </div>
                 </div>
             </div>
-            <div class="span9">
+            <div class="col-board">
                 <div class="active-solution">
                     <div ng-show="solutionUnavailable" ng-click="clearErrors()" class="msg-nosolution"><div class="msg-close">&times;</div> No solution available for this queen pattern.</div>
                     <div ng-controller="BoardController" ng-repeat="solution in activeSolutions">
@@ -30,8 +30,8 @@
                             <div class="board" interactive></div>
                         </div>
                         <div class="board-actions">
-                            <button class="btn btn-primary btn-large" ng-click="requestSolution()">Request Solution</button>
-                            <button class="btn btn-primary btn-large" ng-click="clearBoard()">Clear Board</button>
+                            <button class="btn btn-primary btn-lg" ng-click="requestSolution()">Request Solution</button>
+                            <button class="btn btn-primary btn-lg" ng-click="clearBoard()">Clear Board</button>
                         </div>
                     </div>
                 </div>
@@ -43,23 +43,23 @@
 <div class="footer" >
     <div class="container">
         <div class="row">
-            <div class="span6">
+            <div class="col-footer">
                 <div class="logo">
                     <img src="/img/Arana.png"/>
                 </div>
             </div>
-            <div class="span6 text-right">
-                <p><a href="http://www.github.com/aranasoft/queenseight"><i class="icon-github-sign icon-light icon-large"></i> Queens Eight on GitHub</a>
+            <div class="col-footer text-right">
+                <p><a href="http://www.github.com/aranasoft/queenseight"><i class="fa fa-lg fa-github-square"></i> Queens Eight on GitHub</a>
                     |
-                    <a href="http://www.aranasoft.com" title="Arana Software Web Site"><i class="icon-external-link-sign icon-light icon-large"></i></a>
-                    <a href="http://www.twitter.com/aranasoft" title="Arana Software on Twitter"><i class="icon-twitter-sign icon-light icon-large"></i></a>
-                    <a href="http://www.github.com/aranasoft"><i class="icon-github-sign icon-light icon-large"></i></a>
+                    <a href="http://www.aranasoft.com" title="Arana Software Web Site"><i class="fa fa-lg fa-external-link-square"></i></a>
+                    <a href="http://www.twitter.com/aranasoft" title="Arana Software on Twitter"><i class="fa fa-lg fa-twitter-square"></i></a>
+                    <a href="http://www.github.com/aranasoft"><i class="fa fa-lg fa-github-square"></i></a>
                 </p>
 
-                <div class="muted legal">Built by <a href="http://www.twitter.com/dburton">@dburton</a>
+                <div class="legal">Built by <a href="http://www.twitter.com/dburton">@dburton</a>
                     and <a href="http://www.twitter.com/jayharris">@jayharris</a>.
                     Queens Eight logo by <a href="http://projeqt.com/jlucas">John Lucas</a>.</div>
-                <div class="muted legal">Copyright &copy; 2013-2014 Arana Software. All rights reserved.</div>
+                <div class="legal">Copyright &copy; 2013-2014 Arana Software. All rights reserved.</div>
             </div>
         </div>
     </div>

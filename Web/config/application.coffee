@@ -29,7 +29,7 @@ module.exports = (lineman) =>
       ]
   webfonts:
     files:
-      "vendor/components/font-awesome/font/": "vendor/components/font-awesome/font/**/*.*"
+      "vendor/components/font-awesome/fonts/": "vendor/components/font-awesome/fonts/**/*.*"
   ###
   server:
     apiProxy:

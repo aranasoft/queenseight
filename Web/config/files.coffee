@@ -15,4 +15,4 @@ module.exports = (lineman) =>
     watch: "app/css/**/*.less"
 
   webfonts:
-    root: "font"
+    root: "fonts"

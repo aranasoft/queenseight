@@ -1,88 +1,88 @@
+// Core variables and mixins
 @import "../../vendor/components/bootstrap/less/variables";
 @import "variables";
 @import "../../vendor/components/bootstrap/less/mixins";
 @import "mixins";
 
-// CSS Reset
-@import "../../vendor/components/bootstrap/less/reset";
+// Reset
+@import "../../vendor/components/bootstrap/less/normalize";
+@import "../../vendor/components/bootstrap/less/print";
 
-// Grid system and page structure
+// Core CSS
 @import "../../vendor/components/bootstrap/less/scaffolding";
-@import "../../vendor/components/bootstrap/less/grid";
-@import "../../vendor/components/bootstrap/less/layouts";
-
-// Base CSS
 @import "../../vendor/components/bootstrap/less/type";
 @import "../../vendor/components/bootstrap/less/code";
-@import "../../vendor/components/bootstrap/less/forms";
+@import "../../vendor/components/bootstrap/less/grid";
 @import "../../vendor/components/bootstrap/less/tables";
+@import "../../vendor/components/bootstrap/less/forms";
+@import "../../vendor/components/bootstrap/less/buttons";
 
-// Components: common
-// @import "../../vendor/components/bootstrap/less/sprites";
+// Components
+@import "../../vendor/components/bootstrap/less/component-animations";
+//@import "../../vendor/components/bootstrap/less/glyphicons";
 @import "../../vendor/components/font-awesome/less/font-awesome";
 @import "../../vendor/components/bootstrap/less/dropdowns";
-@import "../../vendor/components/bootstrap/less/wells";
-@import "../../vendor/components/bootstrap/less/component-animations";
-@import "../../vendor/components/bootstrap/less/close";
-
-// Components: Buttons & Alerts
-@import "../../vendor/components/bootstrap/less/buttons";
 @import "../../vendor/components/bootstrap/less/button-groups";
-@import "../../vendor/components/bootstrap/less/alerts"; // Note: alerts share common CSS with buttons and thus have styles in buttons.less
-
-// Components: Nav
+@import "../../vendor/components/bootstrap/less/input-groups";
 @import "../../vendor/components/bootstrap/less/navs";
 @import "../../vendor/components/bootstrap/less/navbar";
 @import "../../vendor/components/bootstrap/less/breadcrumbs";
 @import "../../vendor/components/bootstrap/less/pagination";
 @import "../../vendor/components/bootstrap/less/pager";
+@import "../../vendor/components/bootstrap/less/labels";
+@import "../../vendor/components/bootstrap/less/badges";
+@import "../../vendor/components/bootstrap/less/jumbotron";
+@import "../../vendor/components/bootstrap/less/thumbnails";
+@import "../../vendor/components/bootstrap/less/alerts";
+@import "../../vendor/components/bootstrap/less/progress-bars";
+@import "../../vendor/components/bootstrap/less/media";
+@import "../../vendor/components/bootstrap/less/list-group";
+@import "../../vendor/components/bootstrap/less/panels";
+@import "../../vendor/components/bootstrap/less/wells";
+@import "../../vendor/components/bootstrap/less/close";
 
-// Components: Popovers
+// Components w/ JavaScript
 @import "../../vendor/components/bootstrap/less/modals";
 @import "../../vendor/components/bootstrap/less/tooltip";
 @import "../../vendor/components/bootstrap/less/popovers";
-
-// Components: Misc
-@import "../../vendor/components/bootstrap/less/thumbnails";
-@import "../../vendor/components/bootstrap/less/media";
-@import "../../vendor/components/bootstrap/less/labels-badges";
-@import "../../vendor/components/bootstrap/less/progress-bars";
-@import "../../vendor/components/bootstrap/less/accordion";
 @import "../../vendor/components/bootstrap/less/carousel";
-@import "../../vendor/components/bootstrap/less/hero-unit";
 
 // Utility classes
-@import "../../vendor/components/bootstrap/less/utilities"; // Has to be last to override when necessary
+@import "../../vendor/components/bootstrap/less/utilities";
+@import "../../vendor/components/bootstrap/less/responsive-utilities";
 
-@font-face {
-  .font-face('Libra BT Regular', 'libra_bt');
+@font-face { .font-face('Libra BT Regular', 'libra_bt'); }
+
+.col-solutions {
+  .make-sm-column(3);
+  .make-md-column(3);
+  .make-lg-column(3);
+}
+
+.col-board {
+  .make-sm-column(9);
+  .make-md-column(9);
+  .make-lg-column(9);
+}
+
+.col-footer {
+  .make-sm-column(6);
+  .make-md-column(6);
+  .make-lg-column(6);
 }
 
 .btn {
-  font-weight: bold;
-  font-family: @altFontFamily;
+  font-family: @font-family-serif;
   text-transform: lowercase;
 }
-
 .btn-primary {
-  .buttonBackground(@btnPrimaryBackground, @btnPrimaryBackgroundHighlight, @btnPrimaryBorder, 0 1px 1px rgba(255,255,255,.75));
-  border: 1px solid @btnPrimaryBorder;
-  *border: 0; // Remove the border to prevent IE7's black border on input:focus
-  border-bottom-color: darken(@btnPrimaryBorder, 10%);
-}
-
-.btn-large {
-  font-size: @baseFontSize * 1.5;
-  line-height: @baseLineHeight * 1.5;
+  #gradient > .vertical(@btn-primary-bg, spin(@btn-primary-bg,-30));
 }
 
 .legal {
-  font-size: 70%;
-  line-height: 140%;
-
-  a {
-    color: @white;
-  }
+  .text-muted;
+  font-size: 0.7em;
+  line-height: 1.4; 
 }
 
 html, body {
@@ -96,40 +96,17 @@ html, body {
 }
 
 body {
-  background: url(../img/leather@1x.jpg) repeat top right;
+  .img-retina('../img/leather@1x.jpg','../img/leather@2x.jpg',300px,300px);
 }
 
 .header {
   background: url(../img/banner.png) no-repeat;
-  height: 200px;
-  width: 1024px;
+  .size(1024px,200px);
   margin: 20px auto;
 }
 
-.background-wood {
-  background: url(../img/wood.png) repeat top left;
-}
-
 .chesstable {
-  .chess-table(@cellSizeLarge, 2px);
-  .box-shadow(0 2px 1px rgba(0,0,0,.25));
-  .background-wood;
-  margin: 30px auto 0;
-  padding: 20px;
-
-  .board {
-    .cell {
-      img {
-        .square(65px);
-        margin: 5px;
-      }
-
-      i {
-        color: @redDark;
-        .hide;
-      }
-    }
-  }
+  .chess-table(@board-cell-size-lg);
 }
 
 .active-solution {
@@ -137,7 +114,7 @@ body {
 
   .msg-nosolution {
     .alert;
-    .alert-error;
+    .alert-danger;
     .text-center;
     padding: 20px 0;
     position: absolute;
@@ -157,37 +134,29 @@ body {
 }
 
 .previous-solutions {
-  @minHeight: (@cellSizeLarge * @cellCount) + 4px;
-
-  min-height: @minHeight;
+  min-height: @board-lg-size;
   .background-wood;
   .box-shadow(0 2px 1px rgba(0,0,0,.25));
   margin-top: 30px;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding: @board-gutter-width 0;
 
   .section-header {
     .text-center;
-    color: @redDark;
+    color: @red-dark;
     font-weight: bold;
-    font-family: @altFontFamily;
+    font-family: @font-family-serif;
   }
 
   .chesstable {
-    .chess-table(@cellSizeSmall, 2px);
+    .chess-table(@board-cell-size-sm);
     .box-shadow(none);
     padding: 6px;
     margin-top: 10px;
 
     .board {
       .cell {
-        i {
-          .show;
-        }
-
-        img {
-          .hide;
-        }
+        i { .show; .text-center; }
+        img { .hide;}
       }
     }
   }
@@ -218,12 +187,12 @@ body {
 
 .footer {
   .clearfix();
-  height: 60px;
-  background-color: @brownBlack;
+  .box-sizing(content-box);
+  .size(100%, 60px);
+  background-color: @brown-black;
   color: @white;
-  border-top: 2px solid @brownLight;
+  border-top: 2px solid @brown-light;
   padding: 20px 0;
-  width: 100%;
   vertical-align: middle;
 
   a {
@@ -231,7 +200,8 @@ body {
   }
 
   .logo {
-    width: 150px;
-    height: auto;
+    .size(150px, auto);
+    
+    img { .img-responsive; }
   }
 }
