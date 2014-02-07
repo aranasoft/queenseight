@@ -1,32 +1,41 @@
-.chess-table(@cell-size: 75px, @border-size: @board-border-width) {
-  @board-size: @cell-size * @board-cell-count;
-  .square(@board-size + (@border-size * 2));
-  .box-sizing(content-box);
+.chess-table {
   .box-shadow(0 2px 1px rgba(0,0,0,.25));
   .background-wood;
-  margin: 30px auto 0;
   padding: @board-gutter-width;
 
   .board {
-    .square(@board-size);
-    .box-sizing(content-box);
-    border: @border-size solid @brown-gray;
+    border: @board-border-width solid @brown-gray;
     margin: auto;
 
-    .cell {
-      .square(@cell-size);
-      
-      img {
-        .square(@cell-size * 0.86);
-        margin: @cell-size * 0.07;
-      }
+    .cell-row { .clearfix; }
 
-      i {
-        color: @red-dark;
-        .hide;
-      }
+    .cell {
+      float: left;
+      .responsive-container-square(percentage(1 / @board-cell-count));
+
+      &-dark { background-color: rgba(77,38,22,.6); } 
+      
+      .queen { .responsive-item; }
+       img { .img-responsive; }
     }
   }
+}
+
+.responsive-container(@width, @height) {
+  width: @width;
+  padding-bottom: @height;
+  position:relative;
+}
+.responsive-container-square(@size) {
+  .responsive-container(@size, @size);
+}
+.responsive-item() {
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }
 
 .background-wood() {

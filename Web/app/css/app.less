@@ -11,10 +11,7 @@
 // Core CSS
 @import "../../vendor/components/bootstrap/less/scaffolding";
 @import "../../vendor/components/bootstrap/less/type";
-@import "../../vendor/components/bootstrap/less/code";
 @import "../../vendor/components/bootstrap/less/grid";
-@import "../../vendor/components/bootstrap/less/tables";
-@import "../../vendor/components/bootstrap/less/forms";
 @import "../../vendor/components/bootstrap/less/buttons";
 
 // Components
@@ -22,30 +19,8 @@
 //@import "../../vendor/components/bootstrap/less/glyphicons";
 @import "../../vendor/components/font-awesome/less/font-awesome";
 @import "../../vendor/components/bootstrap/less/dropdowns";
-@import "../../vendor/components/bootstrap/less/button-groups";
-@import "../../vendor/components/bootstrap/less/input-groups";
-@import "../../vendor/components/bootstrap/less/navs";
-@import "../../vendor/components/bootstrap/less/navbar";
-@import "../../vendor/components/bootstrap/less/breadcrumbs";
-@import "../../vendor/components/bootstrap/less/pagination";
-@import "../../vendor/components/bootstrap/less/pager";
-@import "../../vendor/components/bootstrap/less/labels";
-@import "../../vendor/components/bootstrap/less/badges";
-@import "../../vendor/components/bootstrap/less/jumbotron";
-@import "../../vendor/components/bootstrap/less/thumbnails";
 @import "../../vendor/components/bootstrap/less/alerts";
-@import "../../vendor/components/bootstrap/less/progress-bars";
-@import "../../vendor/components/bootstrap/less/media";
-@import "../../vendor/components/bootstrap/less/list-group";
-@import "../../vendor/components/bootstrap/less/panels";
-@import "../../vendor/components/bootstrap/less/wells";
 @import "../../vendor/components/bootstrap/less/close";
-
-// Components w/ JavaScript
-@import "../../vendor/components/bootstrap/less/modals";
-@import "../../vendor/components/bootstrap/less/tooltip";
-@import "../../vendor/components/bootstrap/less/popovers";
-@import "../../vendor/components/bootstrap/less/carousel";
 
 // Utility classes
 @import "../../vendor/components/bootstrap/less/utilities";
@@ -57,6 +32,16 @@
   .make-sm-column(3);
   .make-md-column(3);
   .make-lg-column(3);
+
+  .previous-solution {
+    .make-xs-column(6);
+    .make-sm-column(12);
+    .make-md-column(12);
+    .make-lg-column(12);
+
+    padding-top:    (@grid-gutter-width / 2);
+    padding-bottom: (@grid-gutter-width / 2);
+  }
 }
 
 .col-board {
@@ -69,20 +54,23 @@
   .make-sm-column(6);
   .make-md-column(6);
   .make-lg-column(6);
+
+  & + & {
+    @media (max-width: @screen-xs-max) {
+      margin-top: 20px;
+    }
+  }
 }
 
 .btn {
   font-family: @font-family-serif;
   text-transform: lowercase;
 }
-.btn-primary {
-  #gradient > .vertical(@btn-primary-bg, spin(@btn-primary-bg,-30));
-}
 
 .legal {
   .text-muted;
   font-size: 0.7em;
-  line-height: 1.4; 
+  line-height: 1.4;
 }
 
 html, body {
@@ -92,7 +80,9 @@ html, body {
 .main_content {
   min-height: 100%;
   height: auto;
-  margin-bottom: -80px;
+  margin-bottom: -100px;
+  
+  .container { margin-bottom: 20px; }
 }
 
 body {
@@ -100,13 +90,31 @@ body {
 }
 
 .header {
-  background: url(../img/banner.png) no-repeat;
-  .size(1024px,200px);
-  margin: 20px auto;
-}
+  .responsive-container(100%, 20%);
+  margin-bottom: 3%;
+  
+  .background-image {
+    .responsive-item;
+    font-size: 0;
+    line-height: 0;
+    vertical-align: middle;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-image: url(../img/banner-sm.png);
 
-.chesstable {
-  .chess-table(@board-cell-size-lg);
+    @media (min-width: @screen-md-min) {
+      background-image: url(../img/banner-md.png);
+    }
+    @media (min-width: @screen-lg-min) {
+      background-image: url(../img/banner-lg.png);
+    }
+    
+    .inner {
+      padding-top: 50%;
+      display: block;
+      height: 0;
+    }
+  }
 }
 
 .active-solution {
@@ -134,11 +142,10 @@ body {
 }
 
 .previous-solutions {
-  min-height: @board-lg-size;
   .background-wood;
   .box-shadow(0 2px 1px rgba(0,0,0,.25));
-  margin-top: 30px;
-  padding: @board-gutter-width 0;
+  padding: 10px;
+  min-height: 200px;
 
   .section-header {
     .text-center;
@@ -147,18 +154,9 @@ body {
     font-family: @font-family-serif;
   }
 
-  .chesstable {
-    .chess-table(@board-cell-size-sm);
+  .chess-table {
     .box-shadow(none);
     padding: 6px;
-    margin-top: 10px;
-
-    .board {
-      .cell {
-        i { .show; .text-center; }
-        img { .hide;}
-      }
-    }
   }
 }
 
@@ -166,19 +164,24 @@ body {
   margin-top: 20px;
   margin-bottom: 20px;
   .text-center;
-}
 
-.cell-row {
-  .clearfix();
-}
+  .btn {
+    .btn-lg;
+    #gradient > .vertical(@btn-primary-bg, spin(@btn-primary-bg,-30));
 
-.cell {
-  float: left;
+    + .btn {
+      @media (max-width: @screen-xs-max) {
+        margin-top: 5px;
+      }
+    }
 
-  &-dark {
-    background-color: rgba(77,38,22,.6);
+    @media (max-width: @screen-xs-max) {
+      .btn-block;
+    }
   }
+
 }
+
 
 .footer-push {
   .clearfix;
@@ -186,22 +189,30 @@ body {
 }
 
 .footer {
-  .clearfix();
   .box-sizing(content-box);
-  .size(100%, 60px);
   background-color: @brown-black;
   color: @white;
   border-top: 2px solid @brown-light;
   padding: 20px 0;
   vertical-align: middle;
 
-  a {
-    color: @white;
-  }
+  a { color: @white; }
 
   .logo {
-    .size(150px, auto);
-    
-    img { .img-responsive; }
+    height: 41px;
+    .img-retina('../img/arana-software.png','../img/arana-software@2x.png', 150px, 41px);
+    background-repeat: no-repeat;
+    background-position: 50% 0;
+
+    @media (min-width: @screen-sm-min) {
+      background-position: 15px 0;
+    }
+  }
+  .legal, .more-info {
+    .text-center;
+
+    @media (min-width: @screen-sm-min) {
+      .text-right;
+    }
   }
 }

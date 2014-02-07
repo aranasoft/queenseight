@@ -9,29 +9,31 @@
 </head>
 <body ng-app="QueensEight">
 <div class="main_content">
-    <div class="header"></div>
     <div class="container" ng-controller="GameController">
+        <div class="header"><span class="background-image" role="img" aria-label="Queens Eight"><span class="inner"></span></span></div>
         <div class="row">
-            <div class="col-solutions" ng-controller="SolutionsController">
-                <div class="previous-solutions">
-                    <div class="section-header">Solutions Found: {{solutions.length}}</div>
-                    <div ng-repeat="solution in solutions" ng-controller="BoardController">
-                        <div class="chesstable">
-                            <div class="board"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="col-board">
                 <div class="active-solution">
                     <div ng-show="solutionUnavailable" ng-click="clearErrors()" class="msg-nosolution"><div class="msg-close">&times;</div> No solution available for this queen pattern.</div>
                     <div ng-controller="BoardController" ng-repeat="solution in activeSolutions">
-                        <div class="chesstable">
+                        <div class="chess-table">
                             <div class="board" interactive></div>
                         </div>
                         <div class="board-actions">
-                            <button class="btn btn-primary btn-lg" ng-click="requestSolution()">Request Solution</button>
-                            <button class="btn btn-primary btn-lg" ng-click="clearBoard()">Clear Board</button>
+                            <button class="btn" ng-click="requestSolution()">Request Solution</button>
+                            <button class="btn" ng-click="clearBoard()">Clear Board</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-solutions" ng-controller="SolutionsController">
+                <div class="previous-solutions">
+                    <div class="section-header">Solutions Found: {{solutions.length}}</div>
+                    <div class="row">
+                        <div class="previous-solution" ng-repeat="solution in solutions" ng-controller="BoardController">
+                            <div class="chess-table">
+                                <div class="board"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -43,13 +45,9 @@
 <div class="footer" >
     <div class="container">
         <div class="row">
+            <div class="col-footer logo"></div>
             <div class="col-footer">
-                <div class="logo">
-                    <img src="/img/Arana.png"/>
-                </div>
-            </div>
-            <div class="col-footer text-right">
-                <p><a href="http://www.github.com/aranasoft/queenseight"><i class="fa fa-lg fa-github-square"></i> Queens Eight on GitHub</a>
+                <p class="more-info"><a href="http://www.github.com/aranasoft/queenseight"><i class="fa fa-lg fa-github-square"></i> Queens Eight on GitHub</a>
                     |
                     <a href="http://www.aranasoft.com" title="Arana Software Web Site"><i class="fa fa-lg fa-external-link-square"></i></a>
                     <a href="http://www.twitter.com/aranasoft" title="Arana Software on Twitter"><i class="fa fa-lg fa-twitter-square"></i></a>
