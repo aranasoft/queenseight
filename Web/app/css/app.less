@@ -199,15 +199,27 @@ body {
   a { color: @white; }
 
   .logo {
-    height: 41px;
+    display: block;
+    .size(150px, 41px);
     .img-retina('../img/arana-software.png','../img/arana-software@2x.png', 150px, 41px);
     background-repeat: no-repeat;
-    background-position: 50% 0;
+    margin: 0 auto 20px; 
 
     @media (min-width: @screen-sm-min) {
-      background-position: 15px 0;
+      margin-left: 0;
     }
   }
+
+  .social {
+    a {
+      &:first-child {
+        margin-left: 0;
+      }
+      margin-left: 6px;
+    }
+  }
+
+
   .legal, .more-info {
     .text-center;
 

@@ -18,7 +18,8 @@
     "grunt": "~0.4.2",
     "lineman-bower": "~0.0.3",
     "lineman-coffeelint": "~0.1.1",
-    "grunt-timer": "~0.3.0"
+    "grunt-timer": "~0.3.0",
+    "lineman-jade": "~0.1.1"
   },
   "scripts": {
     "start": "lineman run",

@@ -13,13 +13,15 @@ module.exports = (lineman) =>
     jsVendor:
       files:
         "<%= files.js.minifiedVendor %>": "<%= files.js.concatenatedVendor %>"
-  pages:
-    dev:
-      context:
-        jsVendor: "js/vendor.js"
-    dist:
-      context:
-        jsVendor: "js/vendor.js"
+  jade:
+    pagesDev:
+      options:
+        data:
+          jsVendor: "js/vendor.js"
+    pagesDist:
+      options:
+        data:
+          jsVendor: "js/vendor.js"
   watch:
     less:
       files: [

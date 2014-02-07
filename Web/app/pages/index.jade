@@ -1,0 +1,64 @@
+doctype html
+head
+  meta(charset="utf-8")
+  meta(name="viewport",content="width=device-width,initial-scale=1")
+  title #{ pkg.title } | by #{ pkg.author.company }
+  link(rel="stylesheet",type="text/css",href="#{ css }" media="all")
+  link(rel="shortcut,icon" href="/favicon.ico",type="image/x-icon")
+  link(rel="icon",href="/favicon.ico",type="image/x-icon")
+  meta(name="description",content="#{ pkg.keywords }")
+body(ng-app="QueensEight")
+  .main_content
+    .container(ng-controller="GameController")
+      .header
+        span.background-image(role="img",aria-label="Queens Eight")
+          span.inner
+      .row
+        .col-board
+          .active-solution
+            .msg-nosolution(ng-show="solutionUnavailable",ng-click="clearErrors()")
+              .msg-close &times;
+              | No solution available for this queen pattern.
+            div(ng-controller="BoardController",ng-repeat="solution in activeSolutions")
+              .chess-table
+                .board(interactive)
+              .board-actions
+                button.btn(ng-click="requestSolution()") Request Solution
+                button.btn(ng-click="clearBoard()") Clear Board
+        .col-solutions(ng-controller="SolutionsController")
+          .previous-solutions
+            .section-header Solutions Found: {{solutions.length}}
+              .row
+                .previous-solution(ng-repeat="solution in solutions",ng-controller="BoardController")
+                  .chess-table
+                    .board
+    .footer-push
+  .footer
+    .container
+      .row
+        .col-footer
+          a.logo(href="http://www.aranasoft.com",title="Arana Software web site")
+        .col-footer
+          p.more-info
+            a(href="http://www.github.com/aranasoft/queenseight")
+              i.fa.fa-lg.fa-github-square
+              |  Queens Eight on GitHub
+            |  | #{''}
+            span.social
+              a(href="http://www.twitter.com/aranasoft",title="Arana Software on Twitter")
+                i.fa.fa-lg.fa-twitter-square
+              a(href="http://www.facebook.com/aranasoft",title="Arana Software on Facebook")
+                i.fa.fa-lg.fa-facebook-square
+              a(href="http://www.github.com/aranasoft",title="Arana Software on Github")
+                i.fa.fa-lg.fa-github-square
+          .legal Built by #{''}
+            a(href="http://www.twitter.com/dburton") @dburton
+            |  and #{''}
+            a(href="http://www.twitter.com/jayharris") @jayharris
+            | . Queens Eight logo by #{''}
+            a(href="http://projeqt.com/jlucas") John Lucas
+            | .
+          .legal Copyright &copy; 2013-2014 Arana Software. All rights reserved.
+  script(src="#{jsVendor}", type="text/javascript")
+  script(src="signalr/hubs", type="text/javascript")
+  script(src="#{js}", type="text/javascript")
