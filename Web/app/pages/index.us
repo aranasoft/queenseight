@@ -2,10 +2,13 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title><%= pkg.title %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><%= pkg.title %> | by <%= pkg.author.company %></title>
     <link rel="stylesheet" type="text/css" href="<%= css %>" media="all" />
-    <link rel="SHORTCUT ICON" href='favicon.ico'/>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <meta name="description" content="<%= pkg.description %>">
+    <meta name="keywords" content="<%= pkg.keywords %>">
 </head>
 <body ng-app="QueensEight">
 <div class="main_content">
@@ -45,7 +48,7 @@
 <div class="footer" >
     <div class="container">
         <div class="row">
-            <div class="col-footer logo"></div>
+            <div class="col-footer logo" role="img" aria-label="Queens Eight"></div>
             <div class="col-footer">
                 <p class="more-info"><a href="http://www.github.com/aranasoft/queenseight"><i class="fa fa-lg fa-github-square"></i> Queens Eight on GitHub</a>
                     |

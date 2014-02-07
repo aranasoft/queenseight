@@ -1,7 +1,14 @@
 {
   "name": "QueensEight",
   "title": "Queens Eight",
-  "version": "1.0.0",
+  "description": "The eight queens puzzle, implemented by Arana Software as a demo application for use in presentations.",
+  "homepage": "http://www.queenseight.com",
+  "keywords": [
+    "Arana Software",
+    "Programming Puzzles",
+    "Eight Queens"
+  ],
+  "version": "1.1.0",
   "private": true,
   "author": {
     "company": "Arana Software"
