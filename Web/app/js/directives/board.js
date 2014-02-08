@@ -1,4 +1,4 @@
-﻿queensEight.directive("board", function () {
+queensEight.directive("board", function () {
   return {
     restrict: "C",
     template: queensEight.boardTemplate
