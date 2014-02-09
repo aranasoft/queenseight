@@ -21,7 +21,6 @@ pkg = require './package.json'
 server = require './config/server'
 urlrouter = require 'urlrouter'
 
-
 output =
   css:      'css/app.css'
   jsApp:    'js/app.js'
@@ -35,8 +34,7 @@ files =
     'vendor/webfonts/**/*.*'
     'vendor/components/font-awesome/fonts/**/*.*'
   ]
-  jade:
-    pages:  'app/pages/**/*.jade'
+  jade:     'app/pages/**/*.jade'
   js:
     app:    ['app/js/**/*.js']
     vendor: [
@@ -51,7 +49,6 @@ files =
       'app/css/**'
       'vendor/components/bootstrap/less/**'
     ]
-
 
 config =
   jshint:
@@ -122,7 +119,7 @@ gulp.task 'jslint', () ->
     .pipe(jslint.reporter(jslintReporter))
   
 gulp.task 'jade', () ->
-  gulp.src(files.jade.pages)
+  gulp.src(files.jade)
     .pipe(jade(config.jade))
     .pipe(gulp.dest('./generated'))
     .pipe(gulp.dest('./dist'))
