@@ -27,8 +27,6 @@ module.exports = (grunt) ->
         root: "img"
 
       jade:
-        templates: "app/templates/**/*.jade"
-        generatedTemplate: "generated/template/jade.js"
         pages: "**/*.jade"
         pageRoot: "app/pages/"
 
@@ -190,12 +188,7 @@ module.exports = (grunt) ->
           "<%= files.css.minified %>": "<%= files.css.concatenated %>"
 
     jade:
-      templates:
-        options:
-          client: true
-        files:
-          "<%= files.jade.generatedTemplate %>": "<%= files.jade.templates %>"
-      pagesDev:
+      dev:
         options:
           pretty: true
           data:
@@ -210,7 +203,7 @@ module.exports = (grunt) ->
           dest: "generated/"
           ext: ".html"
         }]
-      pagesDist:
+      dist:
         options:
           data:
             js: "<%= minifiedWebRelative %>"
@@ -284,13 +277,9 @@ module.exports = (grunt) ->
         files: ["app/img/**/*.*", "vendor/img/**/*.*"]
         tasks: ["copy:imagesDev"]
         
-      jadePages:
-        files: ["<%= files.jade.pageRoot %>/<%= files.jade.pages %>","<%= files.jade.templates %>"]
-        tasks: ["jade:pagesDev"]
-
-      jadeTemplates:
-        files: "<%= files.jade.templates %>"
-        tasks: ["jade:templates", "concat:js"]
+      jade:
+        files: ["<%= files.jade.pageRoot %>/<%= files.jade.pages %>"]
+        tasks: ["jade:dev"]
 
       js:
         files: ["<%= files.js.vendor %>", "<%= files.js.app %>"]
@@ -344,8 +333,7 @@ module.exports = (grunt) ->
     'copy:staticDev'
     'copy:imagesDev'
     'copy:webfontsDev'
-    'jade:templates'
-    'jade:pagesDev'
+    'jade:dev'
   ]
   grunt.registerTask 'dev', [
     'connect'
@@ -357,7 +345,7 @@ module.exports = (grunt) ->
     'copy:staticDist'
     'copy:imagesDist'
     'copy:webfontsDist'
-    'jade:pagesDist'
+    'jade:dist'
   ]
 
 bowerDirectory = (grunt) ->
