@@ -31,7 +31,8 @@
     "event-stream": "~3.1.0",
     "jshint-stylish": "~0.1.5",
     "send": "~0.2.0",
-    "urlrouter": "~0.5.4"
+    "urlrouter": "~0.5.4",
+    "gulp-plumber": "~0.5.6"
   },
   "scripts": {
     "start": "gulp run",

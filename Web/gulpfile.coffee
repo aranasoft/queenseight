@@ -16,6 +16,8 @@ cssmin = require 'gulp-minify-css'
 connect = require 'gulp-connect'
 uglify = require 'gulp-uglify'
 
+plumber = require 'gulp-plumber'
+
 es = require 'event-stream'
 pkg = require './package.json'
 server = require './config/server'
@@ -137,13 +139,13 @@ gulp.task 'jsVendor', ['install'], () ->
   gulp.src(files.js.vendor)
     .pipe(concat(output.jsVendor))
     .pipe(gulp.dest('./generated'))
-    #.pipe(uglify())
     .pipe(gulp.dest('./dist'))
   
 gulp.task 'js', ['jsApp','jsVendor']
   
 gulp.task 'css', ['install'], () ->
   gulp.src(files.less.app)
+    .pipe(plumber())
     .pipe(less())
     .pipe(concat(output.css))
     .pipe(gulp.dest('./generated'))
