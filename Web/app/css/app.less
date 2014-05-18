@@ -6,19 +6,27 @@
 
 // Reset
 @import "../../vendor/components/bootstrap/less/normalize";
-@import "../../vendor/components/bootstrap/less/print";
+//@import "../../vendor/components/bootstrap/less/print";
 
 // Core CSS
 @import "../../vendor/components/bootstrap/less/scaffolding";
 @import "../../vendor/components/bootstrap/less/type";
-@import "../../vendor/components/bootstrap/less/grid";
+//@import "../../vendor/components/bootstrap/less/grid";
+
+.container {
+  .container-fixed();
+  @media (min-width: @screen-sm-min) { width: @container-sm; }
+  @media (min-width: @screen-md-min) { width: @container-md; }
+  @media (min-width: @screen-lg-min) { width: @container-lg; }
+}
+.container-fluid { .container-fixed(); }
+.row { .make-row(); }
+
 @import "../../vendor/components/bootstrap/less/buttons";
 
 // Components
 @import "../../vendor/components/bootstrap/less/component-animations";
-//@import "../../vendor/components/bootstrap/less/glyphicons";
 @import "../../vendor/components/font-awesome/less/font-awesome";
-@import "../../vendor/components/bootstrap/less/dropdowns";
 @import "../../vendor/components/bootstrap/less/alerts";
 @import "../../vendor/components/bootstrap/less/close";
 
@@ -180,7 +188,6 @@ body {
       .btn-block;
     }
   }
-
 }
 
 
