@@ -26,7 +26,7 @@ files =
     app:    ['app/js/**/*.js']
     vendor: [
       'vendor/components/jquery/jquery.js'
-      'vendor/components/underscore/underscore-min.js'
+      'vendor/components/underscore/underscore.js'
       'vendor/components/angular/angular.js'
       'vendor/js/**/*.js'
     ]
