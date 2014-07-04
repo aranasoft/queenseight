@@ -43,7 +43,8 @@ module.exports = (options, done) ->
     app.use (req, res, next) ->
       proxyServer.web(req, res)
   else
-    app.use require('body-parser')()
+    bodyParser = require('body-parser')
+    app.use(bodyParser.json())
     userConfig.drawRoutes?(app)
 
   gutil.log util.format "Starting express web server in '%s' on port %d", basePath, webPort
