@@ -15,12 +15,12 @@ files =
     'vendor/webfonts/**/*.*'
     'vendor/components/font-awesome/fonts/**/*.*'
   ]
-  jade:
-    app:    'app/pages/**/*.jade'
-    templates: 'app/templates/**/*.jade'
+  lodash:
+    app:    'app/pages/**/*.html'
+    templates: 'app/templates/**/*.html'
     watch:  [
-      'app/pages/**/*.jade'
-      'app/templates/**/*.jade'
+      'app/pages/**/*.html'
+      'app/templates/**/*.html'
     ]
   js:
     app:    ['app/js/**/*.js']
@@ -69,8 +69,7 @@ module.exports =
     sub: true
   # environment/globals
     browser: true
-  jade:
-    pretty: true
+  lodash:
     data:
       js: output.jsApp
       jsVendor: output.jsVendor

@@ -7,7 +7,7 @@ concat = require 'gulp-concat'
 cssmin = require 'gulp-minify-css'
 html2js = require 'gulp-ng-html2js'
 htmlmin = require 'gulp-htmlmin'
-jade = require 'gulp-jade'
+template = require 'gulp-template'
 less = require 'gulp-less'
 ngmin = require 'gulp-ngmin'
 uglify = require 'gulp-uglify'
@@ -23,7 +23,7 @@ gulp.task 'build', [
   'install'
   'js'
   'css'
-  'jade'
+  'pages'
   'copy'
 ]
 
@@ -50,10 +50,10 @@ gulp.task 'jslint', () ->
   .pipe(jslint(config.jshint))
   .pipe(jslint.reporter(jslintReporter))
 
-gulp.task 'jade', () ->
-  gulp.src(config.files.jade.app)
+gulp.task 'pages', () ->
+  gulp.src(config.files.lodash.app)
   .pipe(plumber())
-  .pipe(jade(config.jade))
+  .pipe(template(config.lodash.data))
   .pipe(gulp.dest('./generated'))
   .pipe(htmlmin(config.htmlmin))
   .pipe(gulp.dest('./dist'))
@@ -66,9 +66,9 @@ gulp.task 'jsApp', () ->
     .pipe(plumber())
     .pipe(coffee()),
     gulp.src(config.files.js.app),
-    gulp.src(config.files.jade.templates)
+    gulp.src(config.files.lodash.templates)
     .pipe(plumber())
-    .pipe(jade(config.jade))
+    .pipe(template(config.lodash.data))
     .pipe(gulp.dest('./generated/templates'))
     .pipe(htmlmin(config.htmlmin))
     .pipe(gulp.dest('./dist/templates'))
@@ -118,8 +118,8 @@ gulp.task 'watch', () ->
   gulp.watch config.files.coffee,          ['coffeelint','jsApp']
   gulp.watch config.files.js.app,          ['jslint','jsApp']
   gulp.watch config.files.js.vendor,       ['jsVendor']
-  gulp.watch config.files.jade.watch,      ['jade']
-  gulp.watch config.files.jade.templates,  ['jsApp']
+  gulp.watch config.files.lodash.watch,      ['pages']
+  gulp.watch config.files.lodash.templates,  ['jsApp']
   gulp.watch config.files.less.watch,      ['css']
   gulp.watch [
     config.files.img
