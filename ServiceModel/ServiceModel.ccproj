@@ -81,10 +81,14 @@
     </ItemGroup>
   </Target>
   <PropertyGroup>
-    <PreBuildEvent>pushd $(ProjectDir)
-cd ..\Web
-.\node_modules\.bin\lineman clean build --no-color
-popd
-</PreBuildEvent>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>pushd $(ProjectDir) &amp;&amp; cd ..\Web &amp;&amp; if not exist .\dist goto :err
+popd &amp;&amp; exit
+:err
+echo Unable to find Web distribution folder, Did you build the web project?
+exit 404</PreBuildEvent>
   </PropertyGroup>
 </Project>
