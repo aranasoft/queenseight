@@ -18,7 +18,7 @@ namespace QueensEight.Processor
                 {
                     return (Configuration) ConfigurationManager.GetSection(SectionName);
                 }
-                catch (ConfigurationErrorsException e)
+                catch (ConfigurationErrorsException)
                 {
                     return new Configuration();
                 }
