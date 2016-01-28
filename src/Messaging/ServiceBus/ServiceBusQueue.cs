@@ -13,7 +13,6 @@ namespace QueensEight.Messaging.ServiceBus {
             }
         }
 
-
         private NamespaceManager _namespaceManager = null;
         protected NamespaceManager NamespaceManager {
             get {
@@ -26,7 +25,7 @@ namespace QueensEight.Messaging.ServiceBus {
 
         protected QueueClient QueueClient {
             get {
-                _queueClient = _queueClient ?? (_queueClient = QueueClient.CreateFromConnectionString(ConnectionString));
+                _queueClient = _queueClient ?? (_queueClient = QueueClient.CreateFromConnectionString(ConnectionString,QueueName));
                 return _queueClient;
             }
         }
