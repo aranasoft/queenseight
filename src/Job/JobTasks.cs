@@ -1,12 +1,14 @@
 using System;
 using System.Linq;
+using System.Net;
 using Microsoft.Azure.WebJobs;
+using Newtonsoft.Json;
+using QueensEight.Job.Configuration;
 using QueensEight.Processor;
 
 namespace QueensEight.Job {
     public class JobTasks {
         public static void ProcessRequestedSolutions([ServiceBusTrigger("%requestqueuename%")] Solution theRequestedSolution) {
-            Console.WriteLine("Solution request for " + theRequestedSolution);
             var board = new Board();
             board.PlaceQueensAtPositions(theRequestedSolution.Positions);
             var queens = board.Solve();
@@ -18,8 +20,16 @@ namespace QueensEight.Job {
                 RequestHash = theRequestedSolution.RequestHash
             };
 
-            //TODO: Post solution back to WebAPI
-            Console.WriteLine("Solution: " + solution);
+            PostSolutionNotification(solution);
+        }
+
+        private static void PostSolutionNotification(Solution solution) {
+            using (var client = new WebClient()) {
+                var notificationUrl = WebJobConfiguration.NotificationUrl;
+                client.Headers.Add("Content-Type", @"application/json");
+                var serializedSolution = JsonConvert.SerializeObject(solution);
+                client.UploadString(notificationUrl, serializedSolution);
+            }
         }
     }
 }
