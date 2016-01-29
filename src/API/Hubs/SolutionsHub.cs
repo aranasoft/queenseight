@@ -14,19 +14,14 @@ namespace QueensEight.Api.Hubs {
 
         public static void BroadcastSolution(Solution solution) {
             var serializedSolution = JsonConvert.SerializeObject(solution, serializerSettings);
-            IHubContext context = GlobalHost.ConnectionManager.GetHubContext<SolutionsHub>();
-            context.Clients.All.SolutionAvailable(serializedSolution);
-
-            //TODO: old version stores solution here
-            // that seems like mixing responsibilities
-            // make sure that 
+            HubContext.Clients.All.SolutionAvailable(serializedSolution);
         }
 
         public static void BroadcastPendingRequest(Solution solution) {
             var serializedSolution = JsonConvert.SerializeObject(solution, serializerSettings);
-            IHubContext context = GlobalHost.ConnectionManager.GetHubContext<SolutionsHub>();
-            context.Clients.All.PendingRequestMade(serializedSolution);
+            HubContext.Clients.All.PendingRequestMade(serializedSolution);
         }
 
+        public static IHubContext HubContext => GlobalHost.ConnectionManager.GetHubContext<SolutionsHub>();
     }
 }

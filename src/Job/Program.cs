@@ -13,7 +13,6 @@ namespace QueensEight.Job
         {
             var serviceBusConfiguration = new ServiceBusConfiguration {
                 ConnectionString = WebJobConfiguration.ServiceBusConnectionString
-
             };
             var config = new JobHostConfiguration
             {
