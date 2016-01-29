@@ -1,13 +1,14 @@
 ﻿using System.Configuration;
 
-namespace QueensEight.Job
+namespace QueensEight.Job.Configuration
 {
-    public class AzureConfiguration : ConfigurationSection {
-        private const string SectionName = "QueensEight";
+    public class WebJobConfiguration : ConfigurationSection {
+        private const string SectionName = "QueensEightWebJob";
         private static class Attributes
         {
             public const string Namespace = "serviceBusNamespace";
             public const string SasKey = "serviceBusSasKey";
+            public const string QueueName = "serviceBusQueueName";
             public const string StorageAccountName = "storageAccountName";
             public const string StorageAccessKey = "storageAccessKey";
         }
@@ -19,8 +20,8 @@ namespace QueensEight.Job
                 var environmentConnectionString = ConfigurationManager.ConnectionStrings[webJobConfigKey].ConnectionString;
                 if (!string.IsNullOrEmpty(environmentConnectionString)) { return environmentConnectionString; }
 
-                var serviceBusNamespace = AzureConfiguration.Current.ServiceBusNamespace;
-                var serviceBusSasKey = AzureConfiguration.Current.ServiceBusSasKey;
+                var serviceBusNamespace = WebJobConfiguration.Current.ServiceBusNamespace;
+                var serviceBusSasKey = WebJobConfiguration.Current.ServiceBusSasKey;
 
                 var connectionString = $"Endpoint=sb://{serviceBusNamespace}.servicebus.windows.net;" +
                                        "SharedAccessKeyName=RootManageSharedAccessKey;" +
@@ -45,14 +46,14 @@ namespace QueensEight.Job
             return connectionString;
         }
 
-        public static AzureConfiguration Current
+        public static WebJobConfiguration Current
         {
             get {
                 try {
-                    return (AzureConfiguration) ConfigurationManager.GetSection(SectionName);
+                    return (WebJobConfiguration) ConfigurationManager.GetSection(SectionName);
                 }
                 catch (ConfigurationErrorsException) {
-                    return new AzureConfiguration();
+                    return new WebJobConfiguration();
                 }
             }
         }
@@ -71,6 +72,13 @@ namespace QueensEight.Job
         {
             get { return (string) this[Attributes.SasKey] ?? GetAppSetting(Attributes.SasKey); }
             set { this[Attributes.SasKey] = value; }
+        }
+
+        [ConfigurationProperty(Attributes.QueueName)]
+        public string ServiceBusQueueName
+        {
+            get { return (string) this[Attributes.QueueName] ?? GetAppSetting(Attributes.QueueName); }
+            set { this[Attributes.QueueName] = value; }
         }
 
         [ConfigurationProperty(Attributes.StorageAccountName)]

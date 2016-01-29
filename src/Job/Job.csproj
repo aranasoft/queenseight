@@ -94,7 +94,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AzureConfiguration.cs" />
+    <Compile Include="Configuration\WebJobConfiguration.cs" />
     <Compile Include="JobTasks.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -108,6 +108,12 @@
       <SubType>Designer</SubType>
     </Content>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Processor\Processor.csproj">
+      <Project>{195A8D3B-D34F-4302-AA42-ABB7C17143B7}</Project>
+      <Name>Processor</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

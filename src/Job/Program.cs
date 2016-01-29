@@ -3,6 +3,7 @@ using System.ServiceModel.Security;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.ServiceBus;
 using Microsoft.ServiceBus;
+using QueensEight.Job.Configuration;
 
 namespace QueensEight.Job
 {
@@ -11,11 +12,11 @@ namespace QueensEight.Job
 
         static void Main(string[] args)
         {
-            var serviceBusConfiguration = new ServiceBusConfiguration { ConnectionString = AzureConfiguration.ServiceBusConnectionString };
+            var serviceBusConfiguration = new ServiceBusConfiguration { ConnectionString = WebJobConfiguration.ServiceBusConnectionString };
             var config = new JobHostConfiguration
             {
-                DashboardConnectionString = AzureConfiguration.WebJobDashboardConnectionString,
-                StorageConnectionString = AzureConfiguration.WebJobStorageConnectionString
+                DashboardConnectionString = WebJobConfiguration.WebJobDashboardConnectionString,
+                StorageConnectionString = WebJobConfiguration.WebJobStorageConnectionString
             };
             config.UseServiceBus(serviceBusConfiguration);
 
