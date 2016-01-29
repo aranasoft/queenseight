@@ -8,7 +8,7 @@ namespace QueensEight.Job.Configuration
         {
             public const string Namespace = "serviceBusNamespace";
             public const string SasKey = "serviceBusSasKey";
-            public const string QueueName = "serviceBusQueueName";
+            public const string RequestQueueName = "serviceBusQueueName";
             public const string StorageAccountName = "storageAccountName";
             public const string StorageAccessKey = "storageAccessKey";
         }
@@ -30,6 +30,8 @@ namespace QueensEight.Job.Configuration
                 return connectionString;
             }
         }
+
+        public static string QueueName => Current.ServiceBusQueueName;
 
         public static string WebJobDashboardConnectionString => FetchWebJobStorageConnectionString("AzureWebJobsDashboard");
         public static string WebJobStorageConnectionString => FetchWebJobStorageConnectionString("AzureWebJobsStorage");
@@ -74,11 +76,11 @@ namespace QueensEight.Job.Configuration
             set { this[Attributes.SasKey] = value; }
         }
 
-        [ConfigurationProperty(Attributes.QueueName)]
+        [ConfigurationProperty(Attributes.RequestQueueName)]
         public string ServiceBusQueueName
         {
-            get { return (string) this[Attributes.QueueName] ?? GetAppSetting(Attributes.QueueName); }
-            set { this[Attributes.QueueName] = value; }
+            get { return (string) this[Attributes.RequestQueueName] ?? GetAppSetting(Attributes.RequestQueueName); }
+            set { this[Attributes.RequestQueueName] = value; }
         }
 
         [ConfigurationProperty(Attributes.StorageAccountName)]

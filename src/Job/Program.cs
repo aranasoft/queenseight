@@ -9,12 +9,15 @@ namespace QueensEight.Job
 {
     class Program
     {
-
         static void Main(string[] args)
         {
-            var serviceBusConfiguration = new ServiceBusConfiguration { ConnectionString = WebJobConfiguration.ServiceBusConnectionString };
+            var serviceBusConfiguration = new ServiceBusConfiguration {
+                ConnectionString = WebJobConfiguration.ServiceBusConnectionString
+
+            };
             var config = new JobHostConfiguration
             {
+                NameResolver = new QueueNameResolver(),
                 DashboardConnectionString = WebJobConfiguration.WebJobDashboardConnectionString,
                 StorageConnectionString = WebJobConfiguration.WebJobStorageConnectionString
             };

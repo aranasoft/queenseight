@@ -4,7 +4,7 @@ using QueensEight.Processor;
 
 namespace QueensEight.Job {
     public class JobTasks {
-        public static void ProcessRequestedSolutions([ServiceBusTrigger("requestedsolutions")] Solution theRequestedSolution)
+        public static void ProcessRequestedSolutions([ServiceBusTrigger("%requestqueuename%")] Solution theRequestedSolution)
         {
             Console.WriteLine(theRequestedSolution);
         }
