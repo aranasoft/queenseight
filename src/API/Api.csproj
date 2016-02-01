@@ -135,6 +135,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\PendingSolutionsController.cs" />
     <Compile Include="Controllers\ValidSolutionsController.cs" />
+    <Compile Include="Data\FakeDataGenerator.cs" />
     <Compile Include="Data\InMemoryDataStore.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
