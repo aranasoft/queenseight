@@ -1,0 +1,54 @@
+.chess-table {
+  .box-shadow(0 2px 1px rgba(0,0,0,.25));
+  .background-wood;
+  padding: @board-gutter-width;
+
+  .board {
+    border: @board-border-width solid @brown-gray;
+    margin: auto;
+
+    .cell-row { .clearfix; }
+
+    .cell {
+      float: left;
+      .responsive-container-square(percentage(1 / @board-cell-count));
+
+      &-dark { background-color: rgba(77,38,22,.6); } 
+      
+      .queen { .responsive-item; }
+       img { .img-responsive; }
+    }
+  }
+}
+
+.responsive-container(@width, @height) {
+  width: @width;
+  padding-bottom: @height;
+  position:relative;
+}
+.responsive-container-square(@size) {
+  .responsive-container(@size, @size);
+}
+.responsive-item() {
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.background-wood() {
+  background: url(../img/wood.png) @brown-light repeat top left;
+}
+
+.font-face(@family, @file-name) {
+  font-family: @family;
+  src: url('../fonts/@{file-name}-webfont.eot');
+  src: url('../fonts/@{file-name}-webfont.eot?#iefix') format('embedded-opentype'),
+  url('../fonts/@{file-name}-webfont.woff') format('woff'),
+  url('../fonts/@{file-name}-webfont.ttf') format('truetype'),
+  url('../fonts/@{file-name}-webfont.svg#libra_btregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}

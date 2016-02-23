@@ -1,0 +1,238 @@
+// Core variables and mixins
+@import "../../vendor/components/bootstrap/less/variables";
+@import "variables";
+@import "../../vendor/components/bootstrap/less/mixins";
+@import "mixins";
+
+// Reset
+@import "../../vendor/components/bootstrap/less/normalize";
+//@import "../../vendor/components/bootstrap/less/print";
+
+// Core CSS
+@import "../../vendor/components/bootstrap/less/scaffolding";
+@import "../../vendor/components/bootstrap/less/type";
+//@import "../../vendor/components/bootstrap/less/grid";
+
+.container {
+  .container-fixed();
+  @media (min-width: @screen-sm-min) { width: @container-sm; }
+  @media (min-width: @screen-md-min) { width: @container-md; }
+  @media (min-width: @screen-lg-min) { width: @container-lg; }
+}
+.container-fluid { .container-fixed(); }
+.row { .make-row(); }
+
+@import "../../vendor/components/bootstrap/less/buttons";
+
+// Components
+@import "../../vendor/components/bootstrap/less/component-animations";
+@import "../../vendor/components/font-awesome/less/font-awesome";
+@import "../../vendor/components/bootstrap/less/alerts";
+@import "../../vendor/components/bootstrap/less/close";
+
+// Utility classes
+@import "../../vendor/components/bootstrap/less/utilities";
+@import "../../vendor/components/bootstrap/less/responsive-utilities";
+
+@font-face { .font-face('Libra BT Regular', 'libra_bt'); }
+
+.col-solutions {
+  .make-sm-column(3);
+  .make-md-column(3);
+  .make-lg-column(3);
+
+  .previous-solution {
+    .make-xs-column(6);
+    .make-sm-column(12);
+    .make-md-column(12);
+    .make-lg-column(12);
+
+    padding-top:    (@grid-gutter-width / 2);
+    padding-bottom: (@grid-gutter-width / 2);
+  }
+}
+
+.col-board {
+  .make-sm-column(9);
+  .make-md-column(9);
+  .make-lg-column(9);
+}
+
+.col-footer {
+  .make-sm-column(6);
+  .make-md-column(6);
+  .make-lg-column(6);
+
+  & + & {
+    @media (max-width: @screen-xs-max) {
+      margin-top: 20px;
+    }
+  }
+}
+
+.btn {
+  font-family: @font-family-serif;
+  text-transform: lowercase;
+}
+
+.legal {
+  .text-muted;
+  font-size: 0.7em;
+  line-height: 1.4;
+}
+
+html, body {
+  height: 100%;
+}
+
+.main_content {
+  min-height: 100%;
+  height: auto;
+  margin-bottom: -100px;
+  
+  .container { margin-bottom: 20px; }
+}
+
+body {
+  .img-retina('../img/leather@1x.jpg','../img/leather@2x.jpg',300px,300px);
+}
+
+.header {
+  .responsive-container(100%, 20%);
+  margin-bottom: 3%;
+  
+  .background-image {
+    .responsive-item;
+    font-size: 0;
+    line-height: 0;
+    vertical-align: middle;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-image: url(../img/banner-sm.png);
+
+    @media (min-width: @screen-md-min) {
+      background-image: url(../img/banner-md.png);
+    }
+    @media (min-width: @screen-lg-min) {
+      background-image: url(../img/banner-lg.png);
+    }
+    
+    .inner {
+      padding-top: 50%;
+      display: block;
+      height: 0;
+    }
+  }
+}
+
+.active-solution {
+  position: relative;
+
+  .msg-nosolution {
+    .alert;
+    .alert-danger;
+    .text-center;
+    padding: 20px 0;
+    position: absolute;
+    width: 70%;
+    top: 40%;
+    left: 15%;
+    z-index: 100;
+
+    .msg-close {
+      .close;
+      pointer: default;
+      position: absolute;
+      top: 10px;
+      right: 20px;
+    }
+  }
+}
+
+.previous-solutions {
+  .background-wood;
+  .box-shadow(0 2px 1px rgba(0,0,0,.25));
+  padding: 10px;
+  min-height: 200px;
+
+  .section-header {
+    .text-center;
+    color: @red-dark;
+    font-weight: bold;
+    font-family: @font-family-serif;
+  }
+
+  .chess-table {
+    .box-shadow(none);
+    background: none;
+    padding: 6px;
+  }
+}
+
+.board-actions {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  .text-center;
+
+  .btn {
+    .btn-lg;
+    #gradient > .vertical(@btn-primary-bg, spin(@btn-primary-bg,-30));
+
+    + .btn {
+      @media (max-width: @screen-xs-max) {
+        margin-top: 5px;
+      }
+    }
+
+    @media (max-width: @screen-xs-max) {
+      .btn-block;
+    }
+  }
+}
+
+
+.footer-push {
+  .clearfix;
+  height: 160px;
+}
+
+.footer {
+  .box-sizing(content-box);
+  background-color: @brown-black;
+  color: @white;
+  border-top: 2px solid @brown-light;
+  padding: 20px 0;
+  vertical-align: middle;
+
+  a { color: @white; }
+
+  .logo {
+    display: block;
+    .size(150px, 41px);
+    .img-retina('../img/arana-software.png','../img/arana-software@2x.png', 150px, 41px);
+    background-repeat: no-repeat;
+    margin: 0 auto 20px; 
+
+    @media (min-width: @screen-sm-min) {
+      margin-left: 0;
+    }
+  }
+
+  .social {
+    a {
+      &:first-child {
+        margin-left: 0;
+      }
+      margin-left: 6px;
+    }
+  }
+
+
+  .legal, .more-info {
+    .text-center;
+
+    @media (min-width: @screen-sm-min) {
+      .text-right;
+    }
+  }
+}

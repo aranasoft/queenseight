@@ -1,0 +1,52 @@
+{
+  "name": "QueensEight",
+  "title": "Queens Eight",
+  "description": "The eight queens puzzle, implemented by Arana Software as a demo application for use in presentations.",
+  "homepage": "http://www.queenseight.com",
+  "keywords": [
+    "Arana Software",
+    "Programming Puzzles",
+    "Eight Queens"
+  ],
+  "version": "1.1.1",
+  "private": true,
+  "author": {
+    "company": "Arana Software"
+  },
+  "devDependencies": {
+    "body-parser": "^1.4.3",
+    "coffee-script": "^1.7.1",
+    "compression": "^1.0.8",
+    "errorhandler": "^1.1.1",
+    "express": "^4.4.5",
+    "gulp-coffeelint": "^0.3.3",
+    "gulp-jshint": "^1.6.4",
+    "gulp-util": "^2.2.19",
+    "http-proxy": "^1.1.4",
+    "jshint-stylish": "^0.2.0",
+    "lodash": "^2.4.1",
+    "open": "^0.0.5",
+    "serve-static": "^1.3.0"
+  },
+  "scripts": {
+    "start": "gulp run",
+    "test": ""
+  },
+  "dependencies": {
+    "event-stream": "^3.1.5",
+    "gulp": "^3.8.5",
+    "gulp-bower": "0.0.6",
+    "gulp-clean": "^0.3.1",
+    "gulp-coffee": "^2.0.1",
+    "gulp-concat": "^2.2.0",
+    "gulp-htmlmin": "^0.1.3",
+    "gulp-less": "^1.3.1",
+    "gulp-livereload": "^2.1.0",
+    "gulp-minify-css": "^0.3.6",
+    "gulp-ng-html2js": "^0.1.7",
+    "gulp-ngmin": "^0.3.0",
+    "gulp-plumber": "^0.6.3",
+    "gulp-template": "^0.1.1",
+    "gulp-uglify": "^0.3.1"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "name": "Web",
+  "version": "1.0.0",
+  "homepage": "https://github.com/aranasoft/queenseight",
+  "authors": [
+    "Jay Harris <jay@aranasoft.com>"
+  ],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor/components/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.1.0",
+    "jquery": "~2.0.3",
+    "angular": "1.0.7",
+    "underscore": "~1.5.2",
+    "font-awesome": "~4.0.3"
+  }
+}
