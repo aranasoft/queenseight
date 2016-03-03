@@ -10,7 +10,7 @@
 </head>
 <body ng-app="QueensEight">
   <div class="main_content">
-    <div ng-controller="GameController" class="container">
+    <div ng-controller="q8GameController as queensEight" class="container">
       <div class="header"><span role="img" aria-label="Queens Eight" class="background-image"><span class="inner"></span></span></div>
       <div class="row">
         <div class="col-board">
@@ -18,25 +18,29 @@
             <div ng-show="solutionUnavailable" ng-click="clearErrors()" class="msg-nosolution">
               <div class="msg-close">&times;</div>No solution available for this queen pattern.
             </div>
-            <div ng-controller="BoardController" ng-repeat="solution in activeSolutions">
+            <!-- <div ng-controller="BoardController" ng-repeat="solution in activeSolutions"> -->
+            <div ng-controller="q8BoardController as board">
               <div class="chess-table">
-                <div interactive class="board"></div>
+                <div interactive class="board" thing="board"></div>
               </div>
               <div class="board-actions">
-                <button ng-click="requestSolution()" class="btn">Request Solution</button>
-                <button ng-click="clearBoard()" class="btn">Clear Board</button>
+                <button ng-click="board.requestSolution()" class="btn">Request Solution</button>
+                <button ng-click="board.clearBoard()" class="btn">Clear Board</button>
               </div>
             </div>
           </div>
         </div>
-        <div ng-controller="SolutionsController" class="col-solutions">
+        <!-- <div ng-controller="SolutionsController" class="col-solutions"> -->
+        <div class="col-solutions">
           <div class="previous-solutions">
-            <div class="section-header">Solutions Found: {{solutions.length}}
+            <div class="section-header">Solutions Found: {{queensEight.validSolutions.length}}
               <div class="row">
-                <div ng-repeat="solution in solutions" ng-controller="BoardController" class="previous-solution">
+                <div ng-repeat="solution in queensEight.validSolutions">
+                <div ng-controller="q8BoardController as board" ng-init="board.solution = solution" class="previous-solution">
                   <div class="chess-table">
                     <div class="board"></div>
                   </div>
+                </div>
                 </div>
               </div>
             </div>

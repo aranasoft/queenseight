@@ -9,14 +9,20 @@
     $.connection.solutionsHub = {};
     $.connection.solutionsHub.client = {};
     $.connection.solutionsHub.server = {};
+
+    // this is depricated in the new version
+    // solutions are fetched via api
     $.connection.solutionsHub.server.fetchSolutions = function(){
         return {
             done: function(fn){
                 return fn(JSON.stringify(allSolutions)); }
         };
     }
+    // this is depricated in the new verstion
+    // solutions are requested via api
     $.connection.solutionsHub.server.requestSolution = function(solution){
         $.extend(solution, newSolution);
         $.connection.solutionsHub.client.solutionAvailable(JSON.stringify(solution));
     }
+
 }(window.jQuery, window));
