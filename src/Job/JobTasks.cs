@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Net;
+using System.Threading;
 using Microsoft.Azure.WebJobs;
 using Newtonsoft.Json;
 using QueensEight.Job.Configuration;

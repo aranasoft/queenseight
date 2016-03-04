@@ -15,7 +15,7 @@
       <div class="row">
         <div class="col-board">
           <div class="active-solution">
-            <div ng-show="solutionUnavailable" ng-click="clearErrors()" class="msg-nosolution">
+            <div ng-show="queensEight.solutionUnavailable" ng-click="queensEight.clearErrors()" class="msg-nosolution">
               <div class="msg-close">&times;</div>No solution available for this queen pattern.
             </div>
             <!-- <div ng-controller="BoardController" ng-repeat="solution in activeSolutions"> -->
@@ -30,7 +30,7 @@
             </div>
           </div>
         </div>
-        <!-- <div ng-controller="SolutionsController" class="col-solutions"> -->
+
         <div class="col-solutions">
           <div class="previous-solutions">
             <div class="section-header">Solutions Found: {{queensEight.validSolutions.length}}
@@ -46,6 +46,24 @@
             </div>
           </div>
         </div>
+
+        <div class="col-solutions">
+          <div class="previous-solutions">
+            <div class="section-header">Requested Solutions: {{queensEight.pendingSolutions.length}}
+              <div class="row">
+                <div ng-repeat="solution in queensEight.pendingSolutions">
+                <div ng-controller="q8BoardController as board" ng-init="board.solution = solution" class="previous-solution">
+                  <div class="chess-table">
+                    <div class="board"></div>
+                  </div>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
       </div>
     </div>
     <div class="footer-push"></div>

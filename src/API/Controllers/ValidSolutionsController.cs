@@ -20,10 +20,15 @@ namespace QueensEight.Api.Controllers
         // POST: api/v1/solutions/valid
         public void Post([FromBody]Solution solution )
         {
-            //TODO: check for existing
+            SolutionsHub.BroadcastSolution(solution);
+
+            var solutionExists = InMemoryDataStore.Solutions.Any((existingSolution) => existingSolution.Hash.Equals(solution.Hash));
+            var solutionIsEmpty = solution.Positions.Count == 0;
+
+            if (solutionExists || solutionIsEmpty) return;
+
             InMemoryDataStore.Solutions.Add(solution);
 
-            SolutionsHub.BroadcastSolution(solution);
         }
     }
 }

@@ -18,7 +18,7 @@ queensEight.provider "q8PendingSolutionsApi", ->
 
 #TODO: Remove [0] references make matcher functions in q8SolutionsData
 #TODO: convert solution unavailable to toastr notifictaion
-queensEight.factory "q8SolutionHub", (q8SolutionData) ->
+queensEight.factory "q8SolutionHub", ($rootScope,q8SolutionData) ->
   initialize: ->
     $.connection.hub.start().done ->
       console.log 'done from hub factory'
@@ -26,36 +26,46 @@ queensEight.factory "q8SolutionHub", (q8SolutionData) ->
     solutionsHub = $.connection.solutionsHub
 
     solutionsHub.client.solutionAvailable = (serializedSolution) ->
-      console.log 'solution available client'
+      console.log 'solutionAvailable start'
       solution = JSON.parse(serializedSolution)
-      requestedSolutons = q8SolutionData.requestedSolutions
+      console.log '     solution:', solution
+      requestedSolutions = q8SolutionData.pendingSolutions
+      console.log '     requestedSolutions: ', requestedSolutions
 
       if( solution.positions.length == 0 )
+        console.log '     solution length 0'
         if( requestedSolutions[0].requestHash == solution.requestHash )
           q8SolutionData.solutionUnavailable = true
-          $scope.$apply()
       else
+        console.log '     solution length non 0'
         q8SolutionData.validSolutions.push solution
         if( requestedSolutions[0].requestHash == solution.requestHash )
           q8SolutionData.solutionUnavailable = false
           requestedSolutions[0].positions = solution.positions
           requestedSolutions[0].hash = solution.hash
-        $scope.$apply()
+
+      existingRequest = _(requestedSolutions).findWhere( {requestHash: solution.requestHash} )
+      console.log 'existing Request: ', existingRequest
+      updatedList = _(requestedSolutions).without(existingRequest)
+      console.log 'updated List: ', updatedList
+      angular.copy updatedList, requestedSolutions
+      $rootScope.$apply()
+
 
     solutionsHub.client.pendingRequestMade = (serializedSolution) ->
-      console.log 'pending solution request client'
+      console.log 'pendingRequestMade start'
       solution = JSON.parse(serializedSolution)
       q8SolutionData.pendingSolutions.push solution
-
-  requestSolution: (partialSolution) ->
-    $.connection.solutionsHub.server.requestSolution partialSolution
-
+      console.log 'pendingRequestMade completion'
+      $rootScope.$apply()
+      return
 
 queensEight.factory "q8SolutionService", (q8SolutionData, q8ValidSolutionsApi, q8PendingSolutionsApi, q8SolutionHub ) ->
   q8SolutionHub.initialize()
 
   requestSolution: (solution) ->
-    q8PendingSolutionsApi.requestSolution solution
+    q8PendingSolutionsApi.requestSolution(solution).$promise.then ->
+      console.log 'requested solution completed'
   requestValidSolutions: ->
     q8ValidSolutionsApi.query().$promise.then (updatedValidSolutions) ->
       console.log 'updatedValidSolutions: ', updatedValidSolutions
@@ -108,7 +118,7 @@ queensEight.controller "q8BoardController", ['$scope', 'q8SolutionData','q8Solut
     else
       $scope.$apply =>
         @solution.positions.push(position)
-    $scope.$apply
+    $scope.$apply()
     return
 
   @requestSolution = =>
@@ -118,8 +128,8 @@ queensEight.controller "q8BoardController", ['$scope', 'q8SolutionData','q8Solut
     return
 
   @clearBoard = ->
-    q8SolutionData.currentSolution.hash = ''
-    q8SolutionData.currentSolution.positions = []
+    @solution.hash = ''
+    angular.copy [], @solution.positions
     q8SolutionData.solutionUnavailable = false
 
   return
