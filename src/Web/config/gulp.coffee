@@ -7,6 +7,10 @@ output =
 files =
   coffee:   [
     'app/js/app.coffee'
+    'app/js/solutionData.coffee'
+    'app/js/resources.coffee'
+    'app/js/solutionHub.coffee'
+    'app/js/solutionService.coffee'
     'app/js/**/*.coffee'
   ]
   img:      'app/img/**/*.*'
