@@ -33,6 +33,20 @@
 
         <div class="col-solutions">
           <div class="previous-solutions">
+            <div class="section-header">Requested Solutions: {{queensEight.pendingSolutions.length}}
+              <div class="row">
+                <div ng-repeat="solution in queensEight.pendingSolutions">
+                <div ng-controller="q8BoardController as board" ng-init="board.solution = solution" class="previous-solution">
+                  <div class="chess-table">
+                    <div class="board"></div>
+                  </div>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="previous-solutions">
             <div class="section-header">Solutions Found: {{queensEight.validSolutions.length}}
               <div class="row">
                 <div ng-repeat="solution in queensEight.validSolutions">
@@ -46,24 +60,6 @@
             </div>
           </div>
         </div>
-
-        <div class="col-solutions">
-          <div class="previous-solutions">
-            <div class="section-header">Requested Solutions: {{queensEight.pendingSolutions.length}}
-              <div class="row">
-                <div ng-repeat="solution in queensEight.pendingSolutions">
-                <div ng-controller="q8BoardController as board" ng-init="board.solution = solution" class="previous-solution">
-                  <div class="chess-table">
-                    <div class="board"></div>
-                  </div>
-                </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
       </div>
     </div>
     <div class="footer-push"></div>
