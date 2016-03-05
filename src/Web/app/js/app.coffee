@@ -1,1 +1,1 @@
-﻿window.queensEight = angular.module 'QueensEight', ['ngResource']
+﻿window.queensEight = angular.module 'QueensEight', ['ngResource','orbMessage']

@@ -33,6 +33,8 @@ files =
       'vendor/components/underscore/underscore.js'
       'vendor/components/angular/angular.js'
       'vendor/components/angular-resource/angular-resource.js'
+      'vendor/components/toastr/toastr.js'
+      'vendor/components/orbweaver-message/orbweaver-message.js'
       'vendor/js/**/*.js'
     ]
   less:
@@ -40,6 +42,7 @@ files =
     watch:  [
       'app/css/**'
       'vendor/components/bootstrap/less/**'
+      'vendor/components/toastr/toastr.less'
     ]
 
 module.exports =

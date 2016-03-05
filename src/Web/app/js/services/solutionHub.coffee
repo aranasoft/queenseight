@@ -1,6 +1,6 @@
 #TODO: Remove [0] references make matcher functions in q8SolutionsData
 #TODO: convert solution unavailable to toastr notifictaion
-queensEight.factory "q8SolutionHub", ['$rootScope','$log','q8SolutionData',($rootScope, $log, q8SolutionData) ->
+queensEight.factory "q8SolutionHub", ['$rootScope','$log','q8SolutionData','orbMessageService',($rootScope, $log, q8SolutionData, orbMessageService) ->
   initialize: ->
     $.connection.hub.start().done ->
       $log.log 'signalR connection established'
@@ -15,12 +15,12 @@ queensEight.factory "q8SolutionHub", ['$rootScope','$log','q8SolutionData',($roo
 
       if( solution.positions.length == 0 )
         if( requestedSolutions[0].requestHash == solution.requestHash and myRequest? )
-          #alert 'solution not available'
+          orbMessageService.error('No solution available for this pattern.')
           q8SolutionData.solutionUnavailable = true
       else
         q8SolutionData.validSolutions.push solution
         if( requestedSolutions[0].requestHash == solution.requestHash and myRequest? )
-          #alert 'found solution'
+          orbMessageService.success('Found solution for this pattern.')
           q8SolutionData.solutionUnavailable = false
           requestedSolutions[0].positions = solution.positions
           requestedSolutions[0].hash = solution.hash
