@@ -2,9 +2,7 @@
 #TODO: convert solution unavailable to toastr notifictaion
 queensEight.factory "q8SolutionHub", ['$rootScope','$log','q8SolutionData','orbMessageService',($rootScope, $log, q8SolutionData, orbMessageService) ->
   initialize: ->
-    $.connection.hub.start().done ->
-      $log.log 'signalR connection established'
-
+    $.connection.hub.start()
     solutionsHub = $.connection.solutionsHub
 
     solutionsHub.client.solutionAvailable = (serializedSolution) ->
@@ -16,12 +14,10 @@ queensEight.factory "q8SolutionHub", ['$rootScope','$log','q8SolutionData','orbM
       if( solution.positions.length == 0 )
         if( requestedSolutions[0].requestHash == solution.requestHash and myRequest? )
           orbMessageService.error('No solution available for this pattern.')
-          q8SolutionData.solutionUnavailable = true
       else
         q8SolutionData.validSolutions.push solution
         if( requestedSolutions[0].requestHash == solution.requestHash and myRequest? )
           orbMessageService.success('Found solution for this pattern.')
-          q8SolutionData.solutionUnavailable = false
           requestedSolutions[0].positions = solution.positions
           requestedSolutions[0].hash = solution.hash
 

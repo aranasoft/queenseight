@@ -12,7 +12,6 @@
   @toggleQueen = (row, column) =>
     return unless @isInteractive
     position = { row: row, column: column }
-    q8SolutionData.solutionUnavailable = false
     if (@hasQueen(row, column))
       $scope.$apply =>
         positions = @solution.positions
@@ -34,7 +33,6 @@
   @clearBoard = ->
     @solution.hash = ''
     angular.copy [], @solution.positions
-    q8SolutionData.solutionUnavailable = false
 
   return
 ]

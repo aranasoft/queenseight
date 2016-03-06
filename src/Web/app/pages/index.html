@@ -15,10 +15,6 @@
       <div class="row">
         <div class="col-board">
           <div class="active-solution">
-            <div ng-show="queensEight.solutionUnavailable" ng-click="queensEight.clearErrors()" class="msg-nosolution">
-              <div class="msg-close">&times;</div>No solution available for this queen pattern.
-            </div>
-            <!-- <div ng-controller="BoardController" ng-repeat="solution in activeSolutions"> -->
             <div ng-controller="q8BoardController as board">
               <div class="chess-table">
                 <div interactive class="board" interactive-board="board"></div>
