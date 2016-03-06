@@ -38,7 +38,7 @@ files =
       'vendor/js/**/*.js'
     ]
   less:
-    app:    ['vendor/components/toastr/toastr.less','app/css/app.less']
+    app:    'app/css/app.less'
     watch:  [
       'app/css/**'
       'vendor/components/bootstrap/less/**'
