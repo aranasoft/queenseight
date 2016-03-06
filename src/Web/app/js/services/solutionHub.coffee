@@ -20,6 +20,7 @@ queensEight.factory "q8SolutionHub", ['$rootScope','$log','q8SolutionData','orbM
           orbMessageService.success('Found solution for this pattern.')
           requestedSolutions[0].positions = solution.positions
           requestedSolutions[0].hash = solution.hash
+          angular.copy solution, q8SolutionData.currentSolution
 
       if( myRequest? )
         angular.copy _(q8SolutionData.myRequestedSolutions).without( myRequest ), q8SolutionData.myRequestedSolutions
