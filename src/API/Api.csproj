@@ -123,6 +123,7 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include=".buildConfiguration\azureServiceBusSettings.base.config" />
     <None Include="Scripts\jquery-1.6.4-vsdoc.js" />
     <Content Include="Scripts\jquery-1.6.4.js" />
     <Content Include="Scripts\jquery-1.6.4.min.js" />
@@ -202,7 +203,24 @@
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>
-  <Target Name="AfterBuild">
-  </Target>
   -->
+  <PropertyGroup>
+    <ConfigurationFilePrefix>azureServiceBusSettings</ConfigurationFilePrefix>
+  </PropertyGroup>
+  <Target Name="AfterCompile">
+    <Message Importance="High" Text="Preparing Configuration File" />
+    <Copy SourceFiles=".buildConfiguration\$(ConfigurationFilePrefix).base.config" DestinationFiles="$(ConfigurationFilePrefix).config" OverwriteReadOnlyFiles="True" />
+    <CallTarget Condition="Exists('.buildConfiguration\$(ConfigurationFilePrefix).$(USERNAME).config')" Targets="TransformDeveloperConfiguration" />
+  </Target>
+  <Target Name="TransformDeveloperConfiguration">
+    <Copy SourceFiles="$(ConfigurationFilePrefix).config" DestinationFiles="obj\$(Configuration)\$(ConfigurationFilePrefix).temp.config" />
+    <TransformXml Source="obj\$(Configuration)\$(ConfigurationFilePrefix).temp.config" Transform=".buildConfiguration\$(ConfigurationFilePrefix).$(USERNAME).config" Destination="obj\$(Configuration)\$(ConfigurationFilePrefix).transformed.config" />
+    <ReadLinesFromFile File="obj\$(Configuration)\$(ConfigurationFilePrefix).transformed.config">
+      <Output TaskParameter="Lines" ItemName="TransformedConfig" />
+    </ReadLinesFromFile>
+    <ReadLinesFromFile File="$(ConfigurationFilePrefix).config">
+      <Output TaskParameter="Lines" ItemName="UntransformedConfig" />
+    </ReadLinesFromFile>
+    <Copy Condition=" @(UntransformedConfig) != @(TransformedConfig) " SourceFiles="obj\$(Configuration)\$(ConfigurationFilePrefix).transformed.config" DestinationFiles="$(ConfigurationFilePrefix).config" OverwriteReadOnlyFiles="True" />
+  </Target>
 </Project>

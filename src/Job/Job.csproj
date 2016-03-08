@@ -101,6 +101,7 @@
     <Compile Include="Configuration\QueueNameResolver.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include=".buildConfiguration\azureSettings.base.config" />
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
@@ -121,7 +122,23 @@
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>
-  <Target Name="AfterBuild">
-  </Target>
   -->
+  <PropertyGroup>
+    <ConfigurationFilePrefix>azureSettings</ConfigurationFilePrefix>
+  </PropertyGroup>
+  <Target Name="AfterCompile">
+    <Copy SourceFiles=".buildConfiguration\$(ConfigurationFilePrefix).base.config" DestinationFiles="$(ConfigurationFilePrefix).config" OverwriteReadOnlyFiles="True" />
+    <CallTarget Condition="Exists('.buildConfiguration\$(ConfigurationFilePrefix).$(USERNAME).config')" Targets="TransformDeveloperConfiguration" />
+  </Target>
+  <Target Name="TransformDeveloperConfiguration">
+    <Copy SourceFiles="$(ConfigurationFilePrefix).config" DestinationFiles="obj\$(Configuration)\$(ConfigurationFilePrefix).temp.config" />
+    <TransformXml Source="obj\$(Configuration)\$(ConfigurationFilePrefix).temp.config" Transform=".buildConfiguration\$(ConfigurationFilePrefix).$(USERNAME).config" Destination="obj\$(Configuration)\$(ConfigurationFilePrefix).transformed.config" />
+    <ReadLinesFromFile File="obj\$(Configuration)\$(ConfigurationFilePrefix).transformed.config">
+      <Output TaskParameter="Lines" ItemName="TransformedConfig" />
+    </ReadLinesFromFile>
+    <ReadLinesFromFile File="$(ConfigurationFilePrefix).config">
+      <Output TaskParameter="Lines" ItemName="UntransformedConfig" />
+    </ReadLinesFromFile>
+    <Copy Condition=" @(UntransformedConfig) != @(TransformedConfig) " SourceFiles="obj\$(Configuration)\$(ConfigurationFilePrefix).transformed.config" DestinationFiles="$(ConfigurationFilePrefix).config" OverwriteReadOnlyFiles="True" />
+  </Target>
 </Project>
