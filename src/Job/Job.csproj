@@ -101,7 +101,10 @@
     <Compile Include="Configuration\QueueNameResolver.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include=".buildConfiguration\azureSettings.base.config" />
+    <None Include=".buildConfiguration\azureSettings.base.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include=".buildConfiguration\azureSettings.dburton.config" />
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
@@ -117,7 +120,12 @@
       <Name>Processor</Name>
     </ProjectReference>
   </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
